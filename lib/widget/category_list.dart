@@ -33,7 +33,7 @@ class _CategoryList extends State<CategoryList> {
         ),
         Container(
           width: double.infinity,
-          height: 125.0,
+          height: 100.0,
           color: Colors.amberAccent,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
