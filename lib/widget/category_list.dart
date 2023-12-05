@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:markt/widget/category_card.dart';
 
 class CategoryList extends StatefulWidget{
 
@@ -31,10 +32,17 @@ class _CategoryList extends State<CategoryList> {
           )
         ),
         Container(
-          height: 115.0,
-          color: Colors.blue,
-
-        ),
+          width: double.infinity,
+          height: 125.0,
+          color: Colors.amberAccent,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: 20,
+            itemBuilder: (BuildContext context, int index) {
+              return CategoryCard();
+            },
+          ),
+        )
       ],
     );
   }
