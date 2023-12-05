@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:markt/widget/home_bar.dart';
+import 'package:markt/widget/category_list.dart';
 
 class HomePage extends StatefulWidget{
 
@@ -17,7 +18,7 @@ class _HomePageState extends State<HomePage> {
         preferredSize: Size.fromHeight(75),
         child: HomeBar(),
       ),
-      body: Container(),
+      body: CategoryList(),
     );
   }
 

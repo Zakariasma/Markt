@@ -9,11 +9,11 @@ class HomeBar extends StatelessWidget implements PreferredSizeWidget {
           alignment: Alignment.bottomLeft,
           color: Colors.redAccent,
           child: Container(
-            margin: const EdgeInsets.only(left: 20.0),
+            margin: const EdgeInsets.only(left: 15.0),
             child: const Text(
               'Market',
               style: TextStyle(
-                fontSize: 30.0,
+                fontSize: 40.0,
               ),
             ),
           ),
