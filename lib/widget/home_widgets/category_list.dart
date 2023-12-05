@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:markt/widget/category_card.dart';
+import 'package:markt/widget/home_widgets/category_card.dart';
 
 class CategoryList extends StatefulWidget{
 

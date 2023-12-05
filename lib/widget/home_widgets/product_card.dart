@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:markt/widget/product_field.dart';
+import 'package:markt/widget/home_widgets/product_field.dart';
 
 class ProductCard extends StatefulWidget{
 
