@@ -13,25 +13,7 @@ class _CategoryList extends State<CategoryList> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Container(
-          height: 40.0,
-          width: double.infinity,
-          alignment: Alignment.centerLeft,
-          color: Colors.lightBlue,
-          margin: const EdgeInsets.only(top: 25, bottom: 25),
-          child: const Padding(
-            padding: EdgeInsets.only(left: 15),
-          child: Text(
-              'hello',
-            style: TextStyle(
-              fontSize: 20
-            ),
-          ),
-          )
-        ),
-        Container(
+    return Container(
           width: double.infinity,
           height: 100.0,
           color: Colors.amberAccent,
@@ -42,8 +24,6 @@ class _CategoryList extends State<CategoryList> {
               return CategoryCard();
             },
           ),
-        )
-      ],
     );
   }
 }
