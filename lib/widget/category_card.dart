@@ -16,7 +16,7 @@ class _CategoryCard extends State<CategoryCard> {
       height: 100.0,
       margin: const EdgeInsets.only(left: 15),
       decoration: BoxDecoration(
-        color: Colors.deepOrangeAccent,
+        color: Color(0xFFE9E9E9),
         borderRadius: BorderRadius.circular(10.0),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:markt/widget/product_field.dart';
 
 class ProductCard extends StatefulWidget{
 
@@ -16,9 +17,8 @@ class _ProductCard extends State<ProductCard> {
         double marginPerfect = constraints.maxWidth * 0.03333;
         return Container(
             width: width,
-            height: width + 70,
-            color: Colors.red,
-            margin: EdgeInsets.only(left: marginPerfect, top: marginPerfect),
+            height: width + 85,
+            margin: EdgeInsets.only(left: marginPerfect, bottom: 50),
             child: Column(
               children:<Widget> [
                 Container(
@@ -26,34 +26,12 @@ class _ProductCard extends State<ProductCard> {
                   height: width,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
-                      color: Colors.amberAccent
+                      color: Color(0xFFE9E9E9),
                   ),
                 ),
-                Container(
-                  width: double.infinity,
-                  height: 30,
-                  color: Colors.brown,
-                  margin: const EdgeInsets.only(top: 5),
-                  child: const Text(
-                    "test de",
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-                Container(
-                  width: double.infinity,
-                  height: 30,
-                  color: Colors.brown,
-                  margin: const EdgeInsets.only(top: 5),
-                  child: const Text(
-                    "50E",
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
-                  ),
-                )
+                ProductField("MacBook M2", 20.0, FontWeight.bold ),
+                ProductField("50E", 20, FontWeight.bold),
+                ProductField("6060 Charleroi", 15, FontWeight.w400),
               ],
             )
         );

@@ -16,7 +16,6 @@ class _ProductList extends State<ProductList> {
     return Container(
       width: double.infinity,
       margin: EdgeInsets.only(bottom: 25),
-      color: Colors.blue,
       child: Wrap(
         children: List.generate(10, (index) => ProductCard()),
       ),

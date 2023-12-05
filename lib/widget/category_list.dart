@@ -16,7 +16,6 @@ class _CategoryList extends State<CategoryList> {
     return Container(
           width: double.infinity,
           height: 100.0,
-          color: Colors.amberAccent,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: 6,

@@ -17,15 +17,16 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFF222222),
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(75),
+        preferredSize: const Size.fromHeight(75),
         child: HomeBar(),
       ),
       body: ListView(
         children: <Widget>[
-          SectionTitle('hello'),
+          SectionTitle('CATEGORIES'),
           CategoryList(),
-          SectionTitle('hello'),
+          SectionTitle('DERNIER ARTICLE'),
           ProductList(),
         ],
       ),

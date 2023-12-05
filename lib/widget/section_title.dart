@@ -12,14 +12,15 @@ class SectionTitle extends StatelessWidget {
       height: 40.0,
       width: double.infinity,
       alignment: Alignment.centerLeft,
-      color: Colors.lightBlue,
       margin: const EdgeInsets.only(top: 25, bottom: 10),
       child: Padding(
         padding: EdgeInsets.only(left: 15),
         child: Text(
           _title,
-          style: TextStyle(
-            fontSize: 20,
+          style: const TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+            color : Color(0xFFE9E9E9),
           ),
         ),
       ),
