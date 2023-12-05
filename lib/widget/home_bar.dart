@@ -4,10 +4,21 @@ import 'package:flutter/material.dart';
 class HomeBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: Colors.red,
-      
-    );
+      return AppBar(
+        flexibleSpace: Container(
+          alignment: Alignment.bottomLeft,
+          color: Colors.redAccent,
+          child: Container(
+            margin: const EdgeInsets.only(left: 20.0),
+            child: const Text(
+              'Market',
+              style: TextStyle(
+                fontSize: 30.0,
+              ),
+            ),
+          ),
+        ),
+      );
   }
 
   @override
