@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:markt/widget/home_widgets/.export_directory.dart';
 
-class HomePage extends StatefulWidget{
+class CreateProduct extends StatefulWidget{
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _CreateProduct createState() => _CreateProduct();
 }
 
-class _HomePageState extends State<HomePage> {
+class _CreateProduct extends State<CreateProduct> {
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +16,6 @@ class _HomePageState extends State<HomePage> {
       body: ListView(
         children: <Widget>[
           HomeBar(),
-          SectionTitle('CATEGORIES'),
-          CategoryList(),
-          SectionTitle('DERNIER ARTICLE'),
-          ProductList(),
         ],
       ),
       bottomNavigationBar: BottomNavbar(),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:markt/page/home_page.dart';
+import 'package:markt/page/product_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,10 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: "Roboto",
       ),
-      home: HomePage(),
+      routes: {
+        '/': (context) => HomePage(),
+        '/product': (context) => ProductPage(),
+      },
     );
   }
 }
