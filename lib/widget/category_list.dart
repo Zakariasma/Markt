@@ -20,7 +20,7 @@ class _CategoryList extends State<CategoryList> {
           width: double.infinity,
           alignment: Alignment.centerLeft,
           color: Colors.lightBlue,
-          margin: const EdgeInsets.only(top: 25),
+          margin: const EdgeInsets.only(top: 25, bottom: 25),
           child: const Padding(
             padding: EdgeInsets.only(left: 15),
           child: Text(
@@ -37,7 +37,7 @@ class _CategoryList extends State<CategoryList> {
           color: Colors.amberAccent,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: 20,
+            itemCount: 6,
             itemBuilder: (BuildContext context, int index) {
               return CategoryCard();
             },
