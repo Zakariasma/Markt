@@ -15,7 +15,7 @@ class _ProductList extends State<ProductList> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.only(bottom: 25),
+      margin: const EdgeInsets.only(bottom: 25),
       child: Wrap(
         children: List.generate(10, (index) => ProductCard()),
       ),

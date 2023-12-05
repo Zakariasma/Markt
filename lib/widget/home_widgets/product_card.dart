@@ -26,7 +26,7 @@ class _ProductCard extends State<ProductCard> {
                   height: width,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
-                      color: Color(0xFFE9E9E9),
+                      color: const Color(0xFFE9E9E9),
                   ),
                 ),
                 ProductField("MacBook M2", 20.0, FontWeight.bold ),

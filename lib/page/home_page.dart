@@ -14,12 +14,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF222222),
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(75),
-        child: HomeBar(),
-      ),
       body: ListView(
         children: <Widget>[
+          HomeBar(),
           SectionTitle('CATEGORIES'),
           CategoryList(),
           SectionTitle('DERNIER ARTICLE'),
