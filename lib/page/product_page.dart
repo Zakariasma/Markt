@@ -18,7 +18,6 @@ class _ProductPage extends State<ProductPage> {
           HomeBar(),
         ],
       ),
-      bottomNavigationBar: BottomNavbar(),
     );
   }
 
