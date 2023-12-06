@@ -12,4 +12,7 @@ const sequelize = new Sequelize('squaredb', 'squarehelha', 'squarepass', {
   },
 });
 
-module.exports = sequelize;
+module.exports = {
+  sequelize,
+  Sequelize,
+};
