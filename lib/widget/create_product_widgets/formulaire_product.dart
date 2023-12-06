@@ -14,14 +14,21 @@ class _FormulaireProduct extends State<FormulaireProduct> {
 
   final _formKey = GlobalKey<FormState>();
 
+  final _nameController = TextEditingController();
+
+  void dispose() {
+    _nameController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
         child: Column(
         children: <Widget>[
-          CustomTextFormField(),
-          const CustomButton(),
+          CustomTextFormField("Nom du produit", "Veuillez entrez le nom", _nameController),
+          CustomButton(_formKey, _nameController),
     ],
         ),
     );

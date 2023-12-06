@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 
 class CustomButton extends StatefulWidget {
 
-  final _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey;
+  final TextEditingController _label;
+
+  CustomButton(this.formKey, this._label);
 
   @override
-  State<CustomButton> createState() => _CustomButtonState();
+  _CustomButtonState createState() => _CustomButtonState();
 }
 
 class _CustomButtonState extends State<CustomButton> {
@@ -20,10 +23,12 @@ class _CustomButtonState extends State<CustomButton> {
       ),
       child: ElevatedButton(
         onPressed: (){
-          if (widget._formKey.currentState!.validate()) {
+          if (widget.formKey.currentState!.validate()) {
+            final test = widget._label.text;
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text('Envoie msg')),
             );
+            print('ajout de $test');
           }
         },
         child: Text("Valider"),
@@ -31,3 +36,4 @@ class _CustomButtonState extends State<CustomButton> {
     );
   }
 }
+
