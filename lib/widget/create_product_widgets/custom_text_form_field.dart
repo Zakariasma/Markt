@@ -4,9 +4,10 @@ class CustomTextFormField extends StatefulWidget {
 
   final String _label;
   final String _errorMessage;
+  final int _maxLines;
   TextEditingController _controller = TextEditingController();
 
-  CustomTextFormField(this._label, this._errorMessage, this._controller);
+  CustomTextFormField(this._label, this._errorMessage, this._controller, this._maxLines);
 
   @override
   _CustomTextFormFieldState createState() => _CustomTextFormFieldState();
@@ -18,6 +19,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
     return Container(
       margin: const EdgeInsets.only(top: 20, left: 10, right: 10),
       child: TextFormField(
+        maxLines: widget._maxLines,
         style: const TextStyle(
           color: Colors.white,
         ),
@@ -39,7 +41,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             ),
           ),
           labelStyle: const TextStyle(
-            color: Colors.white,
+            color: Colors.white12,
+            fontSize: 18,
           ),
         ),
         validator: (value) {
