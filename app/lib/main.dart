@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "Roboto",
       ),
       routes: {
-        '/': (context) => HomePage(),
+        '/': (context) => CreateProduct(),
       },
     );
   }
