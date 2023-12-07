@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:markt/widget/home_widgets/.export_directory.dart';
+import 'package:markt/domain/category.dart';
+
+import '../data/category_repository.dart';
 
 class HomePage extends StatefulWidget{
 
@@ -8,6 +11,21 @@ class HomePage extends StatefulWidget{
 }
 
 class _HomePageState extends State<HomePage> {
+
+  final CategoryRepository repository = CategoryRepository();
+  late Future<List<Category>> futureCategories;
+
+  @override
+  void initState() {
+    super.initState();
+    futureCategories = repository.getAllCategories();
+    futureCategories.then((categories) {
+      for (var category in categories) {
+        print('Category: ${category.category_name}');
+      }
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
