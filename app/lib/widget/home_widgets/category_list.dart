@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:markt/widget/home_widgets/category_card.dart';
+import 'package:markt/domain/category.dart';
 
 class CategoryList extends StatefulWidget{
+
+  final List<Category> categoryList;
+
+  CategoryList({super.key, required this.categoryList});
 
   @override
   _CategoryList createState() => _CategoryList();
@@ -10,19 +15,19 @@ class CategoryList extends StatefulWidget{
 
 class _CategoryList extends State<CategoryList> {
 
-
   @override
   Widget build(BuildContext context) {
     return Container(
-          width: double.infinity,
-          height: 100.0,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: 6,
-            itemBuilder: (BuildContext context, int index) {
-              return CategoryCard();
-            },
-          ),
+      width: double.infinity,
+      height: 100.0,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: widget.categoryList.length,
+        itemBuilder: (BuildContext context, int index) {
+          Category category = widget.categoryList[index];
+          return CategoryCard(category: category);
+        },
+      ),
     );
   }
 }

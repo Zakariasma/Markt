@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:markt/domain/category.dart';
+import 'package:markt/env.dart';
 
 class CategoryCard extends StatefulWidget{
+  final Category category;
+
+  CategoryCard({required this.category});
 
   @override
   _CategoryCard createState() => _CategoryCard();
-
 }
 
 class _CategoryCard extends State<CategoryCard> {
@@ -19,12 +23,10 @@ class _CategoryCard extends State<CategoryCard> {
         color: Color(0xFFE9E9E9),
         borderRadius: BorderRadius.circular(10.0),
         image: DecorationImage(
-          image: Image.network('http://192.168.1.43:3000/assets/static/category_img/image-1701899061222.png').image,
+          image: Image.network('${baseUrl}assets/static/category_img/${widget.category.image}').image,
           fit: BoxFit.cover,
         ),
       ),
     );
   }
-
-
 }

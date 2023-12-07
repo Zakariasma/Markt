@@ -13,19 +13,17 @@ class HomePage extends StatefulWidget{
 class _HomePageState extends State<HomePage> {
 
   final CategoryRepository repository = CategoryRepository();
-  late Future<List<Category>> futureCategories;
+  List<Category> categories = [];
 
   @override
   void initState() {
     super.initState();
-    futureCategories = repository.getAllCategories();
-    futureCategories.then((categories) {
-      for (var category in categories) {
-        print('Category: ${category.category_name}');
-      }
+    repository.getAllCategories().then((fetchedCategories) {
+      setState(() {
+        categories = fetchedCategories;
+      });
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +33,7 @@ class _HomePageState extends State<HomePage> {
         children: <Widget>[
           HomeBar(),
           SectionTitle('CATEGORIES'),
-          CategoryList(),
+          CategoryList(categoryList: categories),
           SectionTitle('DERNIER ARTICLE'),
           ProductList(),
         ],

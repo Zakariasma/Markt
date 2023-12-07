@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:markt/domain/category.dart';
+import 'package:markt/env.dart';
 
 class CategoryProvider {
   Future<List<Category>> fetchCategories() async {
-    final response = await http.get(Uri.parse('http://192.168.1.43:3000/api/category'));
+    final response = await http.get(Uri.parse('${baseUrl}api/category'));
 
     if (response.statusCode == 200) {
       List jsonResponse = json.decode(response.body);
