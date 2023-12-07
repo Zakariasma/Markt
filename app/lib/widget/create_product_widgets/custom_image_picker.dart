@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 class CustomImagePicker extends StatefulWidget {
   const CustomImagePicker({super.key});
@@ -8,6 +10,20 @@ class CustomImagePicker extends StatefulWidget {
 }
 
 class _CustomImagePickerState extends State<CustomImagePicker> {
+
+  final ImagePicker _picker = ImagePicker();
+  List<XFile> images = [];
+
+  Future<void> selectImage() async {
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+
+    if (image != null) {
+      setState(() {
+        images.add(image);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,15 +34,28 @@ class _CustomImagePickerState extends State<CustomImagePicker> {
         children: [
           Align(
             alignment: Alignment.centerLeft,
-            child: Container(
-              width: MediaQuery.of(context).size.width * 0.60,
-              height: double.infinity,
-              margin: const EdgeInsets.only(right: 10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                border: Border.all(
-                  color: Colors.grey,
-                  width: 2,
+            child: GestureDetector(
+              onTap: selectImage,
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.60,
+                height: double.infinity,
+                margin: const EdgeInsets.only(right: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(
+                    color: Colors.grey,
+                    width: 2,
+                  ),
+                  image: images.isNotEmpty ? DecorationImage(
+                    image: FileImage(File(images[0].path)),
+                    fit: BoxFit.cover,
+                  ) : null,
+                ),
+                child: images.isNotEmpty ? null : Center(
+                  child: Text('+', style: TextStyle(
+                      fontSize: 70,
+                      color: Colors.grey.withOpacity(0.5)
+                  )),
                 ),
               ),
             ),
@@ -39,26 +68,52 @@ class _CustomImagePickerState extends State<CustomImagePicker> {
               height: double.infinity,
               child: Column(
                 children: [
-                  Container(
-                    width: double.infinity,
-                    height: 95,
-                    margin: EdgeInsets.only(bottom: 10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      border: Border.all(
-                        color: Colors.grey,
-                        width: 2,
+                  GestureDetector(
+                    onTap: selectImage,
+                    child: Container(
+                      width: double.infinity,
+                      height: 95,
+                      margin: EdgeInsets.only(bottom: 10),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 2,
+                        ),
+                        image: images.length > 1 ? DecorationImage(
+                          image: FileImage(File(images[1].path)),
+                          fit: BoxFit.cover,
+                        ) : null,
+                      ),
+                      child: images.length > 1 ? null : Center(
+                        child: Text('+', style: TextStyle(
+                            fontSize: 70,
+                            color: Colors.grey.withOpacity(0.5)
+                        )),
                       ),
                     ),
                   ),
-                  Container(
-                    width: double.infinity,
-                    height: 95,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      border: Border.all(
-                        color: Colors.grey,
-                        width: 2,
+                  GestureDetector(
+                    onTap: selectImage,
+                    child: Container(
+                      width: double.infinity,
+                      height: 95,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 2,
+                        ),
+                        image: images.length > 2 ? DecorationImage(
+                          image: FileImage(File(images[2].path)),
+                          fit: BoxFit.cover,
+                        ) : null,
+                      ),
+                      child: images.length > 2 ? null : Center(
+                        child: Text('+', style: TextStyle(
+                            fontSize: 70,
+                            color: Colors.grey.withOpacity(0.5)
+                        )),
                       ),
                     ),
                   ),
