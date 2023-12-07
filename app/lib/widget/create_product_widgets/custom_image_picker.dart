@@ -24,6 +24,17 @@ class _CustomImagePickerState extends State<CustomImagePicker> {
     }
   }
 
+  Future<void> takePhoto() async {
+    final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
+
+    if (photo != null && images.length < 3) {
+      setState(() {
+        images.add(photo);
+      });
+    }
+  }
+
+
   void removeImage(int index) {
     setState(() {
       images.removeAt(index);
@@ -43,7 +54,37 @@ class _CustomImagePickerState extends State<CustomImagePicker> {
             alignment: Alignment.centerLeft,
 
             child: GestureDetector(
-              onTap: selectImage,
+              onTap: () {
+                showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext bc) {
+                      return SafeArea(
+                        child: Container(
+                          child: Wrap(
+                            children: <Widget>[
+                              ListTile(
+                                  leading: Icon(Icons.photo_library),
+                                  title: Text('Photo Library'),
+                                  onTap: () {
+                                    selectImage();
+                                    Navigator.of(context).pop();
+                                  }
+                              ),
+                              ListTile(
+                                  leading: Icon(Icons.photo_camera),
+                                  title: Text('Camera'),
+                                  onTap: () {
+                                    takePhoto();
+                                    Navigator.of(context).pop();
+                                  }
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    }
+                );
+              },
 
               child: Stack(
                 children: [
