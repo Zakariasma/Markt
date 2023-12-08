@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:markt/widget/home_widgets/.export_directory.dart';
 import 'package:markt/domain/category.dart';
 
-import '../data/category_repository.dart';
+import 'package:markt/data/category_repository.dart';
 
 class HomePage extends StatefulWidget{
 

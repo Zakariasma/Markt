@@ -1,35 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:markt/domain/category.dart';
+import 'package:markt/data/category_repository.dart';
 
 
 class CustomCategoryMenu extends StatefulWidget {
-  const CustomCategoryMenu({super.key});
+  final ValueNotifier<int> selectedCategory;
+
+  const CustomCategoryMenu({required this.selectedCategory, Key? key}) : super(key: key);
 
   @override
   State<CustomCategoryMenu> createState() => _CustomCategoryMenuState();
 }
 
+
 class _CustomCategoryMenuState extends State<CustomCategoryMenu> {
+
+  final CategoryRepository repository = CategoryRepository();
+  List<Category> categories = [];
+
+  @override
+  void initState() {
+    super.initState();
+    repository.getAllCategories().then((fetchedCategories) {
+      setState(() {
+        categories = fetchedCategories;
+      });
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 20, left: 10, right: 10),
       child: DropdownButtonFormField(
         dropdownColor: Colors.black,
-        hint: Text("Catégorie"), // Placeholder
-        items: const[
-          DropdownMenuItem(
-            child: Text("Technologie"),
-            value: "Technologie",
-          ),
-          DropdownMenuItem(
-            child: Text("Informatique"),
-            value: "Informatique",
-          ),
-          DropdownMenuItem(
-            child: Text("Automobile"),
-            value: "Automobile",
-          ),
-        ],
+        hint: const Text("Catégorie", style: TextStyle(color: Colors.white)), // Placeholder
+        items: categories.map((Category category) {
+          return DropdownMenuItem(
+            value: category.id,
+            child: Text(category.category_name),
+          );
+        }).toList(),
         decoration: InputDecoration(
           border: const OutlineInputBorder(
             borderSide: BorderSide(),
@@ -54,12 +66,13 @@ class _CustomCategoryMenuState extends State<CustomCategoryMenu> {
           color: Colors.white,
           fontSize: 18,
         ),
-        value: "Technologie",
         onChanged: (value){
-          print(value);
+          widget.selectedCategory.value = value!;
         },
+
       ),
     );
   }
+
 }
 

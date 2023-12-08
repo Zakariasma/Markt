@@ -3,11 +3,14 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
 class CustomImagePicker extends StatefulWidget {
-  const CustomImagePicker({super.key});
+  final List<XFile> images;
+
+  CustomImagePicker({required this.images});
 
   @override
-  State<CustomImagePicker> createState() => _CustomImagePickerState();
+  _CustomImagePickerState createState() => _CustomImagePickerState();
 }
+
 
 class _CustomImagePickerState extends State<CustomImagePicker> {
 
@@ -18,12 +21,13 @@ class _CustomImagePickerState extends State<CustomImagePicker> {
   Future<void> selectImage() async {
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
 
-    if (image != null && images.length < 3) {
+    if (image != null) {
       setState(() {
-        images.add(image);
+        widget.images.add(image);
       });
     }
   }
+
 
   //Select image when take picture
   Future<void> takePhoto() async {
