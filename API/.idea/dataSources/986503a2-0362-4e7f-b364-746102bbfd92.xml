@@ -3,7 +3,7 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.51">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <IntrospectionStateNumber>760</IntrospectionStateNumber>
+      <IntrospectionStateNumber>771</IntrospectionStateNumber>
       <ServerVersion>16.1</ServerVersion>
       <StartupTime>1702039473</StartupTime>
       <TimeZones>true ACDT
@@ -1399,7 +1399,7 @@ false posixrules
 13212||10|C|G
 13212||-9223372036854775808|U|G
 13212||10|U|G</Grants>
-      <IntrospectionStateNumber>760</IntrospectionStateNumber>
+      <IntrospectionStateNumber>771</IntrospectionStateNumber>
       <ObjectId>16384</ObjectId>
       <OwnerName>squarehelha</OwnerName>
     </database>
@@ -4823,8 +4823,8 @@ false posixrules
     <schema id="264" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>760</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2023-12-08.15:15:55</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>771</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2023-12-08.18:06:24</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>524</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
@@ -4839,10 +4839,10 @@ false posixrules
     </sequence>
     <sequence id="266" parent="264" name="product_id_seq">
       <DasType>integer|0s</DasType>
-      <ObjectId>24595</ObjectId>
+      <ObjectId>24614</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
-      <StateNumber>759</StateNumber>
+      <StateNumber>768</StateNumber>
       <OwnerName>squarehelha</OwnerName>
     </sequence>
     <sequence id="267" parent="264" name="user_id_seq">
@@ -4860,8 +4860,8 @@ false posixrules
       <OwnerName>squarehelha</OwnerName>
     </table>
     <table id="269" parent="264" name="product">
-      <ObjectId>24596</ObjectId>
-      <StateNumber>759</StateNumber>
+      <ObjectId>24615</ObjectId>
+      <StateNumber>768</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>squarehelha</OwnerName>
     </table>
@@ -4915,97 +4915,97 @@ false posixrules
       <DefaultExpression>nextval(&apos;product_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>759</StateNumber>
-      <SequenceId>24595</SequenceId>
+      <StateNumber>768</StateNumber>
+      <SequenceId>24614</SequenceId>
       <TypeId>23</TypeId>
     </column>
     <column id="277" parent="269" name="pictureList">
       <DasType>varchar(255) []|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
-      <StateNumber>759</StateNumber>
+      <StateNumber>768</StateNumber>
       <TypeId>1015</TypeId>
     </column>
     <column id="278" parent="269" name="title">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
-      <StateNumber>759</StateNumber>
+      <StateNumber>768</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="279" parent="269" name="prix">
-      <DasType>varchar(255)|0s</DasType>
+      <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
-      <StateNumber>759</StateNumber>
-      <TypeId>1043</TypeId>
+      <StateNumber>768</StateNumber>
+      <TypeId>23</TypeId>
     </column>
     <column id="280" parent="269" name="categoryId">
       <DasType>integer|0s</DasType>
       <Position>5</Position>
-      <StateNumber>759</StateNumber>
+      <StateNumber>768</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="281" parent="269" name="description">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
-      <StateNumber>759</StateNumber>
+      <StateNumber>768</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="282" parent="269" name="country">
+    <column id="282" parent="269" name="city">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
-      <StateNumber>759</StateNumber>
+      <StateNumber>768</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="283" parent="269" name="postCode">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
-      <StateNumber>759</StateNumber>
+      <StateNumber>768</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="284" parent="269" name="userId">
       <DasType>integer|0s</DasType>
       <Position>9</Position>
-      <StateNumber>759</StateNumber>
+      <StateNumber>768</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <foreign-key id="285" parent="269" name="product_categoryId_fkey">
       <ColNames>categoryId</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>24604</ObjectId>
+      <ObjectId>24623</ObjectId>
       <OnUpdate>cascade</OnUpdate>
-      <StateNumber>759</StateNumber>
+      <StateNumber>768</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>16389</RefTableId>
     </foreign-key>
     <foreign-key id="286" parent="269" name="product_userId_fkey">
       <ColNames>userId</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>24609</ObjectId>
+      <ObjectId>24628</ObjectId>
       <OnUpdate>cascade</OnUpdate>
-      <StateNumber>759</StateNumber>
+      <StateNumber>768</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>24587</RefTableId>
     </foreign-key>
     <index id="287" parent="269" name="product_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>24602</ObjectId>
+      <ObjectId>24621</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>759</StateNumber>
+      <StateNumber>768</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
     <key id="288" parent="269" name="product_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>24603</ObjectId>
+      <ObjectId>24622</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>759</StateNumber>
-      <UnderlyingIndexId>24602</UnderlyingIndexId>
+      <StateNumber>768</StateNumber>
+      <UnderlyingIndexId>24621</UnderlyingIndexId>
     </key>
     <column id="289" parent="270" name="id">
       <DasType>integer|0s</DasType>

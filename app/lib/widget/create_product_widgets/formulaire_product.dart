@@ -6,6 +6,10 @@ import 'package:markt/widget/create_product_widgets/custom_category_menu.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:markt/widget/create_product_widgets/custom_image_picker.dart';
 import 'package:markt/widget/create_product_widgets/get_localisation.dart';
+import 'package:markt/data/product_repository.dart';
+import 'package:markt/domain/product.dart';
+import 'package:markt/domain/localisation.dart';
+import 'dart:io';
 
 class FormulaireProduct extends StatefulWidget {
   const FormulaireProduct({super.key});
@@ -17,11 +21,12 @@ class FormulaireProduct extends StatefulWidget {
 class _FormulaireProduct extends State<FormulaireProduct> {
 
   final _formKey = GlobalKey<FormState>();
+  final productRepository = ProductRepository();
 
   final _titleController = TextEditingController();
   final _priceController = TextEditingController();
   final _descriptionController = TextEditingController();
-  final Map<String,String> _localisation = <String,String>{};
+  final List<String> _localisation = [];
   final List<XFile> _images = [];
   final ValueNotifier<int> _selectedCategory = ValueNotifier<int>(0);
 
@@ -30,13 +35,24 @@ class _FormulaireProduct extends State<FormulaireProduct> {
     super.dispose();
   }
 
-  void printFormData() {
-    print('Titre: ${_titleController.text}');
-    print('Prix: ${_priceController.text}');
-    print('Description: ${_descriptionController.text}');
-    print('Catégorie sélectionnée: ${_selectedCategory.value}');
-    print('Images: ${_images.map((image) => image.path).join(', ')}');
-    print('localisation: ${_localisation}');
+  void sendFormData() async {
+    if (_formKey.currentState!.validate()) {
+      var product = Product(
+        id: 0,
+        pictureList: _images.map((image) => image.path).toList(),
+        title: _titleController.text,
+        prix: _priceController.text,
+        categoryId: _selectedCategory.value,
+        description: _descriptionController.text,
+        city: _localisation[0],
+        postCode: _localisation[1],
+        userId: 1,
+      );
+
+      var imageFiles = _images.map((xfile) => File(xfile.path)).toList();
+      await productRepository.createProduct(product, imageFiles);
+
+    }
   }
 
 
@@ -56,7 +72,7 @@ class _FormulaireProduct extends State<FormulaireProduct> {
           ElevatedButton(
             onPressed: () {
               if (_formKey.currentState!.validate()) {
-                printFormData();
+                sendFormData();
               }
             },
             child: Text('Submit'),

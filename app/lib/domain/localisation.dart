@@ -1,13 +1,13 @@
 class Localisation {
-  final String ville;
-  final String codePostal;
+  final String city;
+  final String postCode;
 
-  Localisation({required this.ville, required this.codePostal});
+  Localisation({required this.city, required this.postCode});
 
   factory Localisation.fromJson(Map<String, dynamic> json) {
     return Localisation(
-      ville: json['address']['city'],
-      codePostal: json['address']['postcode'],
+      city: json['address']['city'],
+      postCode: json['address']['postcode'],
     );
   }
 }

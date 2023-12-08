@@ -18,8 +18,10 @@ const upload = multer({ storage: storage });
 
 router.post('/', upload.array('pictureList', 3), async (req, res) => {
     try {
+
         let pictureList = req.files.map(file => file.filename);
         req.body.pictureList = pictureList;
+        console.log(req.body);
         const product = await ProductService.createProduct(req.body);
         res.json(product);
     } catch (err) {

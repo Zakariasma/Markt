@@ -7,7 +7,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 class GetLocalisation extends StatefulWidget {
 
-  Map<String,String> localisation;
+  List<String> localisation;
 
   GetLocalisation({required this.localisation, Key? key});
 
@@ -18,12 +18,16 @@ class GetLocalisation extends StatefulWidget {
 class _GetLocalisationState extends State<GetLocalisation> {
 
   final repository = LocalisationApiRepository();
-  Map<String,String> localisation = {};
 
   setLocalisation(String long, String lat) async {
     Localisation localisationAPI = await repository.getLocalisation(long, lat);
-    widget.localisation =  {localisationAPI.ville: localisationAPI.codePostal};
+    setState(() {
+      widget.localisation.add(localisationAPI.city);
+      widget.localisation.add(localisationAPI.postCode);
+    });
+    print(widget.localisation);
   }
+
 
 
   @override

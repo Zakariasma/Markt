@@ -34,7 +34,7 @@ const Product = sequelize.define('Product', {
             type: Sequelize.STRING,
             allowNull: false
         },
-        country: {
+        city: {
             type: Sequelize.STRING,
             allowNull: false
         },
