@@ -28,6 +28,15 @@ class _FormulaireProduct extends State<FormulaireProduct> {
     super.dispose();
   }
 
+  void printFormData() {
+    print('Titre: ${_titleController.text}');
+    print('Prix: ${_priceController.text}');
+    print('Description: ${_descriptionController.text}');
+    print('Catégorie sélectionnée: ${_selectedCategory.value}');
+    print('Images: ${_images.map((image) => image.path).join(', ')}');
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -40,7 +49,17 @@ class _FormulaireProduct extends State<FormulaireProduct> {
           CustomCategoryMenu(selectedCategory: _selectedCategory),
           CustomTextFormField("Description", "Veuillez entrez une description...", _descriptionController, 5),
           CustomButton(_formKey, _titleController),
-    ],
+          ElevatedButton(
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                printFormData();
+              }
+            },
+            child: Text('Submit'),
+          ),
+
+
+        ],
         ),
     );
   }

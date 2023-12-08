@@ -33,9 +33,9 @@ class _CustomImagePickerState extends State<CustomImagePicker> {
   Future<void> takePhoto() async {
     final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
 
-    if (photo != null && images.length < 3) {
+    if (photo != null && widget.images.length < 3) {
       setState(() {
-        images.add(photo);
+        widget.images.add(photo);
       });
     }
   }
@@ -43,7 +43,7 @@ class _CustomImagePickerState extends State<CustomImagePicker> {
   //Remove image to list
   void removeImage(int index) {
     setState(() {
-      images.removeAt(index);
+      widget.images.removeAt(index);
     });
   }
 
@@ -88,8 +88,8 @@ class _CustomImagePickerState extends State<CustomImagePicker> {
         color: Colors.grey,
         width: 2,
       ),
-      image: images.length > index ? DecorationImage(
-        image: FileImage(File(images[index].path)),
+      image: widget.images.length > index? DecorationImage(
+        image: FileImage(File(widget.images[index].path)),
         fit: BoxFit.cover,
       ) : null,
     );
@@ -97,7 +97,7 @@ class _CustomImagePickerState extends State<CustomImagePicker> {
 
   //Display icon when image not exist
   Widget displayAddIcon(int index) {
-    return images.length <= index ? Center(
+    return widget.images.length <= index ? Center(
       child: Text('+', style: TextStyle(
           fontSize: 70,
           color: Colors.grey.withOpacity(0.5)
@@ -107,7 +107,7 @@ class _CustomImagePickerState extends State<CustomImagePicker> {
 
   //Display delete button when image exist
   Widget displayDeleteButton(int index) {
-    return images.length > index ? Align(
+    return widget.images.length > index ? Align(
       alignment: Alignment.topLeft,
       child: Container(
         color: Colors.black.withOpacity(0.5),
@@ -143,9 +143,7 @@ class _CustomImagePickerState extends State<CustomImagePicker> {
                   displayDeleteButton(0),
                 ],
               ),
-
             ),
-
           ),
 
           Align(
