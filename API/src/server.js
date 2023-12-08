@@ -5,6 +5,7 @@ const db = require('./database/database');
 const cors = require('cors');
 const categoryController = require('./controllers/category_controller');
 const userController = require('./controllers/user_controller');
+const productController = require('./controllers/product_controller');
 const path = require('path');
 
 const User = require('./models/user');
@@ -26,6 +27,7 @@ app.use(cors(
 app.use('/assets', express.static(path.join(__dirname, '../assets')));
 app.use('/api/category', categoryController);
 app.use('/api/user', userController);
+app.use('/api/product', productController);
 
 
 server.listen(3000, () => {
