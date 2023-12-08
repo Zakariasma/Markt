@@ -5,6 +5,7 @@ import 'package:markt/widget/create_product_widgets/custom_text_form_field.dart'
 import 'package:markt/widget/create_product_widgets/custom_category_menu.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:markt/widget/create_product_widgets/custom_image_picker.dart';
+import 'package:markt/widget/create_product_widgets/get_localisation.dart';
 
 class FormulaireProduct extends StatefulWidget {
   const FormulaireProduct({super.key});
@@ -20,6 +21,7 @@ class _FormulaireProduct extends State<FormulaireProduct> {
   final _titleController = TextEditingController();
   final _priceController = TextEditingController();
   final _descriptionController = TextEditingController();
+  final Map<String,String> _localisation = <String,String>{};
   final List<XFile> _images = [];
   final ValueNotifier<int> _selectedCategory = ValueNotifier<int>(0);
 
@@ -34,6 +36,7 @@ class _FormulaireProduct extends State<FormulaireProduct> {
     print('Description: ${_descriptionController.text}');
     print('Catégorie sélectionnée: ${_selectedCategory.value}');
     print('Images: ${_images.map((image) => image.path).join(', ')}');
+    print('localisation: ${_localisation}');
   }
 
 
@@ -49,6 +52,7 @@ class _FormulaireProduct extends State<FormulaireProduct> {
           CustomCategoryMenu(selectedCategory: _selectedCategory),
           CustomTextFormField("Description", "Veuillez entrez une description...", _descriptionController, 5),
           CustomButton(_formKey, _titleController),
+          GetLocalisation(localisation: _localisation),
           ElevatedButton(
             onPressed: () {
               if (_formKey.currentState!.validate()) {
@@ -57,8 +61,6 @@ class _FormulaireProduct extends State<FormulaireProduct> {
             },
             child: Text('Submit'),
           ),
-
-
         ],
         ),
     );
