@@ -6,6 +6,10 @@ const cors = require('cors');
 const categoryController = require('./controllers/category_controller');
 const path = require('path');
 
+const User = require('./models/user');
+const Category = require('./models/category');
+const Product = require('./models/product');
+
 
 app.use(bodyParser.json());
 const http = require('http');

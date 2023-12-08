@@ -3,7 +3,7 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.51">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <IntrospectionStateNumber>755</IntrospectionStateNumber>
+      <IntrospectionStateNumber>758</IntrospectionStateNumber>
       <ServerVersion>16.1</ServerVersion>
       <StartupTime>1702039473</StartupTime>
       <TimeZones>true ACDT
@@ -1399,7 +1399,7 @@ false posixrules
 13212||10|C|G
 13212||-9223372036854775808|U|G
 13212||10|U|G</Grants>
-      <IntrospectionStateNumber>755</IntrospectionStateNumber>
+      <IntrospectionStateNumber>758</IntrospectionStateNumber>
       <ObjectId>16384</ObjectId>
       <OwnerName>squarehelha</OwnerName>
     </database>
@@ -4823,8 +4823,8 @@ false posixrules
     <schema id="264" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>755</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2023-12-08.14:44:26</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>758</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2023-12-08.14:54:37</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>524</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
@@ -4837,13 +4837,27 @@ false posixrules
       <StateNumber>740</StateNumber>
       <OwnerName>squarehelha</OwnerName>
     </sequence>
-    <table id="266" parent="264" name="category">
+    <sequence id="266" parent="264" name="user_id_seq">
+      <DasType>integer|0s</DasType>
+      <ObjectId>24586</ObjectId>
+      <SequenceIdentity>1</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>757</StateNumber>
+      <OwnerName>squarehelha</OwnerName>
+    </sequence>
+    <table id="267" parent="264" name="category">
       <ObjectId>16389</ObjectId>
       <StateNumber>740</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>squarehelha</OwnerName>
     </table>
-    <column id="267" parent="266" name="id">
+    <table id="268" parent="264" name="user">
+      <ObjectId>24587</ObjectId>
+      <StateNumber>757</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>squarehelha</OwnerName>
+    </table>
+    <column id="269" parent="267" name="id">
       <DasType>integer|0s</DasType>
       <DefaultExpression>nextval(&apos;category_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
@@ -4852,21 +4866,21 @@ false posixrules
       <SequenceId>16388</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="268" parent="266" name="category_name">
+    <column id="270" parent="267" name="category_name">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>740</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="269" parent="266" name="image">
+    <column id="271" parent="267" name="image">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>740</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="270" parent="266" name="category_pkey">
+    <index id="272" parent="267" name="category_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16395</ObjectId>
@@ -4875,12 +4889,58 @@ false posixrules
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="271" parent="266" name="category_pkey">
+    <key id="273" parent="267" name="category_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16396</ObjectId>
       <Primary>1</Primary>
       <StateNumber>740</StateNumber>
       <UnderlyingIndexId>16395</UnderlyingIndexId>
+    </key>
+    <column id="274" parent="268" name="id">
+      <DasType>integer|0s</DasType>
+      <DefaultExpression>nextval(&apos;user_id_seq&apos;::regclass)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>757</StateNumber>
+      <SequenceId>24586</SequenceId>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="275" parent="268" name="username">
+      <DasType>varchar(255)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>757</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="276" parent="268" name="password">
+      <DasType>varchar(255)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>757</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="277" parent="268" name="picture">
+      <DasType>varchar(255)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StateNumber>757</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="278" parent="268" name="user_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>24593</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>757</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="279" parent="268" name="user_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>24594</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>757</StateNumber>
+      <UnderlyingIndexId>24593</UnderlyingIndexId>
     </key>
   </database-model>
 </dataSource>

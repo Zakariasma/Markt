@@ -4,7 +4,7 @@ const Category = require('./category');
 const sequelize = db.sequelize;
 const Sequelize = db.Sequelize;
 
-const Product = sequelize.define('product', {
+const Product = sequelize.define('Product', {
         id: {
             type: Sequelize.INTEGER,
             autoIncrement: true,
@@ -56,8 +56,9 @@ const Product = sequelize.define('product', {
     }
 );
 
-Product.belongsTo(User);
-Product.belongsTo(Category);
+Product.belongsTo(User, { as: 'User', foreignKey: 'userId' });
+Product.belongsTo(Category, { as: 'Category', foreignKey: 'categoryId' });
+
 Product.sync()
     .then(() => console.log('Table "product" créée'))
     .catch(err => console.error('Erreur lors de la création de la table "product":', err));
