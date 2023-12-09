@@ -59,6 +59,7 @@ class _ProductInformationState extends State<ProductInformation> {
               ),
             ),
           ),
+
         ],
       ),
     );

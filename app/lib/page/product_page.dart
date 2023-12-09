@@ -3,6 +3,7 @@ import 'package:markt/widget/home_widgets/.export_directory.dart';
 import 'package:markt/widget/product/picture_list.dart';
 
 import '../widget/product/product_information.dart';
+import '../widget/product/seller_information.dart';
 import '../widget/universal_widgets/return_navbar.dart';
 
 class ProductPage extends StatefulWidget{
@@ -26,6 +27,7 @@ class _ProductPage extends State<ProductPage> {
         children: <Widget>[
           PictureList(),
           ProductInformation(),
+          SellerInformation(),
         ],
       ),
     );
