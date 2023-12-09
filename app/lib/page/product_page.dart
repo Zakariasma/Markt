@@ -24,10 +24,10 @@ class _ProductPage extends State<ProductPage> {
       backgroundColor: const Color(0xFF222222),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(50),
-        child: ReturnNavbar("PRODUIT"),
+        child: ReturnNavbar("PRODUIT",""),
       ),
       body: ListView(
-        children: <Widget>[
+        children:const [
           PictureList(),
           ProductInformation(),
           SellerInformation(),

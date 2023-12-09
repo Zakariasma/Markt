@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 class ReturnNavbar extends StatelessWidget{
 
+  final String index;
   final String _title;
 
-  ReturnNavbar(this._title);
+  ReturnNavbar(this._title, this.index);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class ReturnNavbar extends StatelessWidget{
           size: 30,
         ),
         onPressed: () {
-          Navigator.pop(context);
+          Navigator.pop(context, '/$index');
         },
       ),
       title: Text(
@@ -38,6 +39,7 @@ class ReturnNavbar extends StatelessWidget{
           fontWeight: FontWeight.w600,
         ),
       ),
+
     );
   }
 }

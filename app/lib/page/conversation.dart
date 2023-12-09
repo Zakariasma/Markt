@@ -17,7 +17,7 @@ class _ConversationState extends State<Conversation> {
       backgroundColor: const Color(0xFF222222),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(50),
-        child: ReturnNavbar("MacBook Pro 13"),
+        child: ReturnNavbar("MacBook Pro 13", "lobby"),
       ),
       body: ListView(
         children: <Widget>[

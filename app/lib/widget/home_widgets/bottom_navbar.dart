@@ -2,6 +2,23 @@ import 'package:flutter/material.dart';
 
 class BottomNavbar extends StatelessWidget{
 
+  changePage(BuildContext context, int index){
+    switch(index){
+      case 0:
+        Navigator.pushNamed(context, '/');
+        break;
+      case 1:
+        Navigator.pushNamed(context, '/createProduct');
+        break;
+      case 2:
+        Navigator.pushNamed(context, '/lobby');
+        break;
+      case 3:
+        Navigator.pushNamed(context, '/profil');
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container (
@@ -32,14 +49,17 @@ class BottomNavbar extends StatelessWidget{
               label: 'Add product',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.add_card_outlined),
+              icon: Icon(Icons.chat_sharp),
               label: 'Chat',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.account_circle_outlined),
               label: 'Profil',
             ),
-          ]
+          ],
+          onTap: (index) {
+            changePage(context, index);
+          },
 
     ),
     );

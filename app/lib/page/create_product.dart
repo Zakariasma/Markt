@@ -16,7 +16,7 @@ class _CreateProduct extends State<CreateProduct> {
       backgroundColor: const Color(0xFF222222),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(50),
-        child: ReturnNavbar("VENDRE UN PRODUIT"),
+        child: ReturnNavbar("VENDRE UN PRODUIT", ""),
       ),
       body: ListView(
         children: <Widget>[

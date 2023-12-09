@@ -23,7 +23,10 @@ class MyApp extends StatelessWidget {
         fontFamily: "Roboto",
       ),
       routes: {
-        '/': (context) => Conversation(),
+        '/': (context) => HomePage(),
+        '/createProduct': (context) => CreateProduct(),
+        '/lobby': (context) => LobbyChat(),
+        '/profil': (context) => Profil(),
       },
     );
   }
