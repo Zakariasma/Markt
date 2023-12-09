@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:markt/page/conversation.dart';
 import 'package:markt/page/create_product.dart';
 import 'package:markt/page/home_page.dart';
 import 'package:markt/page/lobby_chat.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "Roboto",
       ),
       routes: {
-        '/': (context) => LobbyChat(),
+        '/': (context) => Conversation(),
       },
     );
   }
