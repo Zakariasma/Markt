@@ -15,7 +15,7 @@ class _SwitchButtonState extends State<SwitchButton> {
       height: 75,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Colors.green,
+        color: Color.fromRGBO(0, 0, 0, 0.2)
       ),
       child:Row(
         children: [
@@ -26,12 +26,11 @@ class _SwitchButtonState extends State<SwitchButton> {
             alignment: Alignment.center,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: Colors.deepOrange,
             ),
             child: const Text(
-              "test",
+              "En ligne",
               style: TextStyle(
-                color: Colors.white,
+                color: Colors.white10,
                 fontSize: 20,
               ),
             ),
@@ -43,13 +42,14 @@ class _SwitchButtonState extends State<SwitchButton> {
             margin: EdgeInsets.only(left:5, right:5),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: Colors.deepPurple,
+              color: Colors.white,
             ),
             child: const Text(
-                "test",
+                "Brouillon",
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Color(0xFF222222),
                   fontSize: 20,
+                  fontWeight: FontWeight.w600,
                 ),
             ),
           ),

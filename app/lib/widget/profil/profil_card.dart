@@ -16,7 +16,7 @@ class _ProfilCardState extends State<ProfilCard> {
       margin: EdgeInsets.only(right: 10, left: 10, top: 20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: Colors.cyan,
+        color: Color(0xFFE9E9E9),
       ),
       child:Row(
         children: [
@@ -26,7 +26,7 @@ class _ProfilCardState extends State<ProfilCard> {
             margin: EdgeInsets.only(left:20),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: Colors.white,
+              color: Colors.black,
             ),
           ),
           Container(
@@ -34,7 +34,7 @@ class _ProfilCardState extends State<ProfilCard> {
             child: const Text(
               "Charle",
               style: TextStyle(
-                color: Colors.white,
+                color: Color(0xFF222222),
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
               ),

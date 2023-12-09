@@ -14,7 +14,6 @@ class _ProfilProductState extends State<ProfilProduct> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: Colors.red,
       margin: EdgeInsets.only(right: 10, left: 10, top: 20),
       child:Column(
         children:[

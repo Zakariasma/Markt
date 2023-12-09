@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:markt/widget/lobby/conversation_list.dart';
 
 import '../widget/home_widgets/bottom_navbar.dart';
 import '../widget/home_widgets/home_bar.dart';
-import '../widget/profil/profil_card.dart';
-import '../widget/profil/profil_product.dart';
 import '../widget/universal_widgets/return_navbar.dart';
 
-class Profil extends StatefulWidget {
-  const Profil({super.key});
+class LobbyChat extends StatefulWidget {
+  const LobbyChat({super.key});
 
   @override
-  State<Profil> createState() => _ProfilState();
+  State<LobbyChat> createState() => _LobbyChatState();
 }
 
-class _ProfilState extends State<Profil> {
+class _LobbyChatState extends State<LobbyChat> {
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +21,11 @@ class _ProfilState extends State<Profil> {
       body: ListView(
         children: <Widget>[
           HomeBar(),
-          ProfilCard(),
-          ProfilProduct(),
+          ConversationList(),
         ],
       ),
       bottomNavigationBar: BottomNavbar(),
     );
   }
+
 }
