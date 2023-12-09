@@ -52,4 +52,18 @@ class ProductProvider {
     }
   }
 
+  Future<List<ProductDTO>> getProductByCategoryID(int categoryId) async {
+    var response = await http.get(Uri.parse('${baseUrl}api/product/category/$categoryId'));
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+      List<ProductDTO> products = [];
+      for (var item in data) {
+        products.add(ProductDTO.fromJson(item));
+      }
+      return products;
+    } else {
+      throw Exception('Failed to load products');
+    }
+  }
+
 }

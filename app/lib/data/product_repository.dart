@@ -25,4 +25,13 @@ class ProductRepository {
       return [];
     }
   }
+
+  Future<List<ProductDTO>> getProductByCategoryID(int categoryId) async {
+    try {
+      return await productProvider.getProductByCategoryID(categoryId);
+    } catch (e) {
+      print('Failed to load products: $e');
+      return [];
+    }
+  }
 }

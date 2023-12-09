@@ -35,6 +35,15 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void getProductByCategoryID(int categoryId) {
+    products.clear();
+    productRepository.getProductByCategoryID(categoryId).then((fetchedProducts) {
+      setState(() {
+        products = fetchedProducts;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +52,7 @@ class _HomePageState extends State<HomePage> {
         children: <Widget>[
           HomeBar(),
           SectionTitle('CATEGORIES'),
-          CategoryList(categoryList: categories),
+          CategoryList(categoryList: categories, passAtHomeCategoryId: getProductByCategoryID),
           SectionTitle('DERNIER ARTICLE'),
           ProductList(productList: products),
         ],

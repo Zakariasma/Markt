@@ -5,8 +5,9 @@ import 'package:markt/domain/category.dart';
 class CategoryList extends StatefulWidget{
 
   final List<Category> categoryList;
+  final void Function(int)? passAtHomeCategoryId;
 
-  CategoryList({super.key, required this.categoryList});
+  CategoryList({super.key, required this.categoryList, required this.passAtHomeCategoryId});
 
   @override
   _CategoryList createState() => _CategoryList();
@@ -14,6 +15,10 @@ class CategoryList extends StatefulWidget{
 }
 
 class _CategoryList extends State<CategoryList> {
+
+  void passAtHomeCategoryId(int categoryId) {
+    widget.passAtHomeCategoryId!(categoryId);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +30,7 @@ class _CategoryList extends State<CategoryList> {
         itemCount: widget.categoryList.length,
         itemBuilder: (BuildContext context, int index) {
           Category category = widget.categoryList[index];
-          return CategoryCard(category: category);
+          return CategoryCard(category: category, getCategoryID: passAtHomeCategoryId);
         },
       ),
     );
