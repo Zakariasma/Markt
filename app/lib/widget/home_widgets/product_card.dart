@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:markt/widget/home_widgets/product_field.dart';
+import 'package:markt/domain/productDTO.dart';
+import 'package:markt/env.dart';
 
 class ProductCard extends StatefulWidget{
+
+  final ProductDTO product;
+
+  ProductCard({super.key, required this.product});
 
   @override
   _ProductCard createState() => _ProductCard();
@@ -25,13 +31,17 @@ class _ProductCard extends State<ProductCard> {
                   width: double.infinity,
                   height: width,
                   decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage('${baseUrl}assets/static/product_img/${widget.product.pictureList[0]}'),
+                      fit: BoxFit.cover,
+                    ),
                       borderRadius: BorderRadius.circular(25),
                       color: const Color(0xFFE9E9E9),
                   ),
                 ),
-                ProductField("MacBook M2", 20.0, FontWeight.bold ),
-                ProductField("50E", 20, FontWeight.bold),
-                ProductField("6060 Charleroi", 15, FontWeight.w400),
+                ProductField(widget.product.title, 20.0, FontWeight.bold ),
+                ProductField("${widget.product.prix.toString()} €", 20, FontWeight.bold),
+                ProductField("${widget.product.postCode} ${widget.product.city}", 15, FontWeight.w400),
               ],
             )
         );

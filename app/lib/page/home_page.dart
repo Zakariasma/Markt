@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
           SectionTitle('CATEGORIES'),
           CategoryList(categoryList: categories),
           SectionTitle('DERNIER ARTICLE'),
-          ProductList(),
+          ProductList(productList: products),
         ],
       ),
       bottomNavigationBar: BottomNavbar(),
