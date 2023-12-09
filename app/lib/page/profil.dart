@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../widget/profil/profil_card.dart';
+import '../widget/profil/profil_product.dart';
 import '../widget/universal_widgets/return_navbar.dart';
 
 class Profil extends StatefulWidget {
@@ -23,6 +24,7 @@ class _ProfilState extends State<Profil> {
       body: ListView(
         children: <Widget>[
           ProfilCard(),
+          ProfilProduct(),
         ],
       ),
     );
