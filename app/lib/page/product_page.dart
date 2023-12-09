@@ -5,6 +5,7 @@ import 'package:markt/widget/product/picture_list.dart';
 import '../widget/product/product_information.dart';
 import '../widget/product/seller_information.dart';
 import '../widget/universal_widgets/return_navbar.dart';
+import 'maps.dart';
 
 class ProductPage extends StatefulWidget{
 
@@ -28,6 +29,7 @@ class _ProductPage extends State<ProductPage> {
           PictureList(),
           ProductInformation(),
           SellerInformation(),
+          Maps(),
         ],
       ),
     );
