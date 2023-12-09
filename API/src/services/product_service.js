@@ -29,10 +29,10 @@ async function getProduct(){
     }
 }
 
-async function getProductByCategoryID(categoryID){
+async function getProductByCategoryID(categoryId){
     try{
         return await Product.findAll({
-            where: { categoryID: categoryID },
+            where: { categoryId: categoryId },
             order: [
                 ['date', 'DESC']
             ],
@@ -46,10 +46,10 @@ async function getProductByCategoryID(categoryID){
     }
 }
 
-async function getProductByUserID(userID){
+async function getProductByUserID(userId){
     try{
         return await Product.findAll({
-            where: { userID: userID },
+            where: { userId: userId },
             order: [
                 ['date', 'DESC']
             ],

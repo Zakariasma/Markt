@@ -6,6 +6,7 @@ const multer = require('multer');
 const path = require('path');
 const CategoryService = require("../services/category_service");
 const ProductMapper = require("../mapper/product_mapper");
+const Product = require("../models/product");
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
@@ -32,20 +33,22 @@ router.post('/', upload.array('pictureList', 3), async (req, res) => {
     }
 });
 
-router.get('/category/{categoryID}', async (req, res) => {
+router.get('/category/:categoryId', async (req, res) => {
     try {
-        let products = await ProductService.getProductByCategoryID(req.params.categoryID);
-        let productsDTO = await ProductMapper.mappProducts(products);
+        console.log(req.params.categoryId);
+        const products = await ProductService.getProductByCategoryID(req.params.categoryId);
+        const productsDTO = await ProductMapper.mappProducts(products);
         return res.json(productsDTO);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 });
 
-router.get('/userid/{userID}', async (req, res) => {
+router.get('/user/:userId', async (req, res) => {
     try {
-        let products = await ProductService.getProductByUserID(req.params.userID);
-        let productsDTO = await ProductMapper.mappProducts(products);
+        console.log(req.params.userId);
+        const products = await ProductService.getProductByUserID(req.params.userId);
+        const productsDTO = await ProductMapper.mappProducts(products);
         return res.json(productsDTO);
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -57,12 +60,14 @@ router.get('/userid/{userID}', async (req, res) => {
 
 router.get('/', async (req, res) => {
     try {
-        let products = await ProductService.getProduct();
-        let productsDTO = await ProductMapper.mappProducts(products);
+        const products = await ProductService.getProduct();
+        const productsDTO = await ProductMapper.mappProducts(products);
         return res.json(productsDTO);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 });
+
+
 
 module.exports = router;

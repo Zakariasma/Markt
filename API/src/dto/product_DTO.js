@@ -4,12 +4,15 @@ class ProductDto {
         this.pictureList = product.pictureList;
         this.title = product.title;
         this.prix = product.prix;
-        this.category = product.category;
+        this.category = product.Category.category_name;
         this.description = product.description;
         this.date = product.date;
-        this.country = product.country;
+        this.country = product.city;
         this.postCode = product.postCode;
-        this.username = product.username;
-        this.profilPicture = product.profilPicture;
+        this.username = product.User.username;
+        this.profilPicture = product.User.picture;
     }
 }
+
+
+module.exports = ProductDto;
