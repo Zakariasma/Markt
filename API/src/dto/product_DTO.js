@@ -4,10 +4,12 @@ class ProductDto {
         this.pictureList = product.pictureList;
         this.title = product.title;
         this.prix = product.prix;
-        this.categoryId = product.categoryId;
+        this.category = product.category;
         this.description = product.description;
+        this.date = product.date;
         this.country = product.country;
         this.postCode = product.postCode;
-        this.userId = product.userId;
+        this.username = product.username;
+        this.profilPicture = product.profilPicture;
     }
 }

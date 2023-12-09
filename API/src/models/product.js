@@ -42,6 +42,10 @@ const Product = sequelize.define('Product', {
             type: Sequelize.STRING,
             allowNull: false
         },
+        date: {
+            type: Sequelize.DATE,
+            allowNull: false
+        },
         userId: {
             type: Sequelize.INTEGER,
             references: {
