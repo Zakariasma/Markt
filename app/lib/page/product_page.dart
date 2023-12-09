@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:markt/widget/home_widgets/.export_directory.dart';
 import 'package:markt/widget/product/picture_list.dart';
 import 'package:markt/widget/product/product_description.dart';
+import 'package:markt/widget/product/same_product.dart';
 
 import '../widget/product/product_information.dart';
 import '../widget/product/seller_information.dart';
@@ -32,6 +33,7 @@ class _ProductPage extends State<ProductPage> {
           SellerInformation(),
           Maps(),
           ProductDescription(),
+          SameProduct(),
         ],
       ),
     );

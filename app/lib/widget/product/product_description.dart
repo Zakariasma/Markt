@@ -14,7 +14,7 @@ class _ProductDescriptionState extends State<ProductDescription> {
       margin: EdgeInsets.only(top: 20, left: 10, right: 10),
       width: double.infinity,
       decoration: const BoxDecoration(
-        border: Border(top: BorderSide(color: Colors.grey)),
+        border: Border(top: BorderSide(color: Colors.white24)),
       ),
       child:Column(
         children: [
