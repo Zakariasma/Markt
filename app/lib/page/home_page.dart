@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:markt/widget/home_widgets/.export_directory.dart';
 import 'package:markt/domain/category.dart';
 
+import 'package:markt/data/product_repository.dart';
+import 'package:markt/domain/productDTO.dart';
+
 import 'package:markt/data/category_repository.dart';
 
 class HomePage extends StatefulWidget{
@@ -12,15 +15,22 @@ class HomePage extends StatefulWidget{
 
 class _HomePageState extends State<HomePage> {
 
-  final CategoryRepository repository = CategoryRepository();
+  final CategoryRepository categoryRepository = CategoryRepository();
+  final ProductRepository productRepository = ProductRepository();
   List<Category> categories = [];
+  List<ProductDTO> products = [];
 
   @override
   void initState() {
     super.initState();
-    repository.getAllCategories().then((fetchedCategories) {
+    categoryRepository.getAllCategories().then((fetchedCategories) {
       setState(() {
         categories = fetchedCategories;
+      });
+    });
+    productRepository.getProducts().then((fetchedProducts) {
+      setState(() {
+        products = fetchedProducts;
       });
     });
   }

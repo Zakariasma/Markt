@@ -7,7 +7,7 @@ class ProductDto {
         this.category = product.Category.category_name;
         this.description = product.description;
         this.date = product.date;
-        this.country = product.city;
+        this.city = product.city;
         this.postCode = product.postCode;
         this.username = product.User.username;
         this.profilPicture = product.User.picture;
