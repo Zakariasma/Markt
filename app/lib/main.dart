@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:markt/page/create_product.dart';
 import 'package:markt/page/home_page.dart';
 import 'package:markt/page/product_page.dart';
+import 'package:markt/page/profil.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "Roboto",
       ),
       routes: {
-        '/': (context) => ProductPage(),
+        '/': (context) => Profil(),
       },
     );
   }
