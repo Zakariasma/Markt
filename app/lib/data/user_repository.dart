@@ -16,4 +16,13 @@ class UserRepository {
     }
   }
 
+  Future<void> login(UserDTO user) async {
+    try {
+      await userProvider.login(user);
+      print('User logged successfully');
+    } catch (e) {
+      print('Failed to login: $e');
+    }
+  }
+
 }

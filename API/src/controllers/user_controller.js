@@ -22,4 +22,13 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.post('/login', async (req, res) => {
+    try {
+        const user = await UserService.loginUser(req.body)
+        res.json(user);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 module.exports = router;

@@ -19,7 +19,23 @@ async function getUser(){
     }
 }
 
+async function loginUser(user){
+    try{
+        return await User.findOne({
+            where: {
+                [Sequelize.Op.and]: [
+                    {email: user.email},
+                    {password: user.password}
+                ]
+            }
+        });
+    } catch(error){
+        console.error('Error while getting category:', error);
+    }
+}
+
 module.exports = {
     createUser,
     getUser,
+    loginUser,
 };

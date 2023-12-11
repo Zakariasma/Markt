@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "Roboto",
       ),
       routes: {
-        '/': (context) => Inscription(),
+        '/': (context) => Login(),
         '/createProduct': (context) => CreateProduct(),
         '/lobby': (context) => LobbyChat(),
         '/profil': (context) => Profil(),

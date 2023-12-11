@@ -20,4 +20,17 @@ class UserProvider {
     }
   }
 
+  Future<void> login(UserDTO user) async {
+    final response = await http.post(Uri.parse('${baseUrl}api/user/login'),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: json.encode(user.toJson()));
+    if (response.statusCode == 200) {
+      print('User logged successfully');
+    } else {
+      throw Exception(response.statusCode);
+    }
+  }
+
 }
