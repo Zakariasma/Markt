@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:markt/page/conversation.dart';
 import 'package:markt/page/create_product.dart';
 import 'package:markt/page/home_page.dart';
+import 'package:markt/page/inscription.dart';
 import 'package:markt/page/lobby_chat.dart';
 import 'package:markt/page/login.dart';
 import 'package:markt/page/product_page.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "Roboto",
       ),
       routes: {
-        '/': (context) => Login(),
+        '/': (context) => Inscription(),
         '/createProduct': (context) => CreateProduct(),
         '/lobby': (context) => LobbyChat(),
         '/profil': (context) => Profil(),

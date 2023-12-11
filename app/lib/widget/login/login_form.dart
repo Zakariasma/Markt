@@ -21,7 +21,7 @@ class _LoginFormState extends State<LoginForm> {
             child: const TextField(
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                labelText: 'Email',
+                labelText: 'Nom d\'utilisateur',
               ),
             ),
           ),

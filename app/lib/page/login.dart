@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../widget/login/hello.dart';
+import '../widget/login/inscription_direction.dart';
 import '../widget/login/login_form.dart';
 
 class Login extends StatefulWidget {
@@ -17,9 +18,10 @@ class _LoginState extends State<Login> {
     return Scaffold(
       backgroundColor: const Color(0xFF222222),
       body: ListView(
-        children: <Widget>[
+        children: const <Widget>[
             Hello(),
             LoginForm(),
+            InscriptionDirection(),
         ],
       ),
     );
