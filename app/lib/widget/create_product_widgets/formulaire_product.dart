@@ -10,6 +10,7 @@ import 'package:markt/data/product_repository.dart';
 import 'package:markt/domain/product.dart';
 import 'package:markt/domain/localisation.dart';
 import 'dart:io';
+import 'package:markt/token/token_manage.dart';
 
 class FormulaireProduct extends StatefulWidget {
   const FormulaireProduct({super.key});
@@ -37,6 +38,7 @@ class _FormulaireProduct extends State<FormulaireProduct> {
 
   void sendFormData() async {
     if (_formKey.currentState!.validate()) {
+      Map<String, dynamic>  tokenData = await TokenManager.extractTokenData() as Map<String, dynamic>;
       var product = Product(
         id: 0,
         pictureList: _images.map((image) => image.path).toList(),
@@ -46,7 +48,7 @@ class _FormulaireProduct extends State<FormulaireProduct> {
         description: _descriptionController.text,
         city: _localisation[0],
         postCode: _localisation[1],
-        userId: 1,
+        userId: tokenData['id'],
       );
 
       var imageFiles = _images.map((xfile) => File(xfile.path)).toList();

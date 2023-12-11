@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:markt/middleware/route_guard.dart';
 import 'package:markt/page/conversation.dart';
 import 'package:markt/page/create_product.dart';
 import 'package:markt/page/home_page.dart';
@@ -24,11 +25,14 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: "Roboto",
       ),
+      navigatorObservers: [RouteGuard()],
       routes: {
-        '/': (context) => Login(),
+        '/': (context) => HomePage(),
         '/createProduct': (context) => CreateProduct(),
         '/lobby': (context) => LobbyChat(),
         '/profil': (context) => Profil(),
+        '/login': (context) => Login(),
+        '/inscription': (context) => Inscription(),
       },
     );
   }
