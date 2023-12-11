@@ -51,7 +51,10 @@ User.generateJWT = function (user) {
         username: user.username,
         picture: user.picture
     };
-    const token = jwt.sign(payload, config.jwtSecret, { expiresIn: '1h' });
+
+    const expiresIn = 3 * 30 * 24 * 60 * 60;
+    const token = jwt.sign(payload, config.jwtSecret, { expiresIn });
+
     return token;
 }
 

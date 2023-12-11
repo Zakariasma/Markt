@@ -8,7 +8,7 @@ import 'package:markt/token/token_manage.dart';
 
 class UserProvider {
 
-  final tokenManage = TokenManage();
+  final tokenManager = TokenManager();
 
   Future<void> createUser(UserDTO user) async {
     final response = await http.post(Uri.parse('${baseUrl}api/user'),
@@ -17,7 +17,7 @@ class UserProvider {
         },
         body: json.encode(user.toJson()));
     if (response.statusCode == 200) {
-      tokenManage.saveAccessToken(json.decode(response.body)['token']);
+      print('User created successfully');
     } else {
       throw Exception(response.statusCode);
     }
@@ -33,7 +33,7 @@ class UserProvider {
     );
 
     if (response.statusCode == 200) {
-      final responseData = json.decode(response.body);
+      tokenManager.saveAccessToken(json.decode(response.body)['token']);
     } else {
       throw Exception(response.statusCode);
     }
