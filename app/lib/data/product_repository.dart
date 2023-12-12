@@ -34,4 +34,13 @@ class ProductRepository {
       return [];
     }
   }
+
+  Future<List<ProductDTO>> getProductsRecommendation(category) async {
+    try {
+      return await productProvider.getProductsRecommendation(category);
+    } catch (e) {
+      print('Failed to load products: $e');
+      return [];
+    }
+  }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../data/product_repository.dart';
 import '../../domain/productDTO.dart';
+import '../home_widgets/product_card.dart';
 
 class SameProduct extends StatefulWidget {
 
@@ -13,12 +15,25 @@ class SameProduct extends StatefulWidget {
 }
 
 class _SameProductState extends State<SameProduct> {
+
+  final ProductRepository productRepository = ProductRepository();
+  List<ProductDTO> products = [];
+
+  @override
+  void initState() {
+    super.initState();
+    productRepository.getProductsRecommendation(widget.productShowing.category).then((fetchedProducts) {
+      setState(() {
+        products = fetchedProducts;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       margin: EdgeInsets.only(top: 40, left: 10, right: 10, bottom: 50),
-      height: 450,
       child:Column(
         children: [
           Container(
@@ -39,11 +54,10 @@ class _SameProductState extends State<SameProduct> {
           ),
           Container(
             width: double.infinity,
-            height: 400,
-            color: Colors.blue,
             child:Wrap(
               children: [
-
+                for (var product in products)
+                  ProductCard(product: product),
               ],
             ),
           ),

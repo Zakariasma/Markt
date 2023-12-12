@@ -64,10 +64,29 @@ async function getProductByUserID(userId){
 }
 
 
+async function getFourProductByCategoryName(categoryName){
+    try{
+        return await Product.findAll({
+            limit: 4,
+            order: [
+                ['date', 'DESC']
+            ],
+            include: [
+                { model: User, as: 'User' },
+                { model: Category, as: 'Category', where: { name: categoryName } }
+            ]
+        });
+    } catch(error){
+        console.error('Error while getting product:', error);
+    }
+}
+
+
 
 module.exports = {
     createProduct,
     getProduct,
     getProductByCategoryID,
-    getProductByUserID
+    getProductByUserID,
+    getFourProductByCategoryName,
 };

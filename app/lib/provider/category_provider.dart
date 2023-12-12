@@ -14,4 +14,5 @@ class CategoryProvider {
       throw Exception('Failed to load categories from API');
     }
   }
+
 }

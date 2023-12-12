@@ -9,6 +9,9 @@ async function mappProducts(products) {
     let productsDTO = [];
     for (let product of products) {
         let productDTO = await mappProduct(product);
+        let options = { weekday: 'long', day: 'numeric', month: 'long' };
+        let formattedDate = productDTO.date.toLocaleDateString('fr-FR', options);
+        productDTO.date = formattedDate;
         productsDTO.push(productDTO);
     }
     return productsDTO;

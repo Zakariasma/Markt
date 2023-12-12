@@ -12,7 +12,9 @@ async function createUser(user) {
         if (existingUser) {
             throw new Error('Le nom d\'utilisateur est déjà pris.');
         }
-
+        let alphabet = 'abcdefghijk';
+        let randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
+        user.picture = randomLetter + '.png';
         user.password = await User.hashPassword(user.password);
         return await User.create(user);
     } catch (error) {

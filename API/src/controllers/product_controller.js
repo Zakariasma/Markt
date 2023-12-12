@@ -55,6 +55,17 @@ router.get('/user/:userId', async (req, res) => {
     }
 });
 
+router.get('/recommendation/:categoryName', async (req, res) => {
+    try {
+        const category = await CategoryService.getCategoryByName(req.params.categoryName);
+        const products = await ProductService.getProductByCategoryID(category.id);
+        const productsDTO = await ProductMapper.mappProducts(products);
+        return res.json(productsDTO);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 
 
 

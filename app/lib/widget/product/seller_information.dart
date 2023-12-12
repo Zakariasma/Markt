@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:markt/env.dart';
 
 import '../../domain/productDTO.dart';
 
@@ -46,7 +47,10 @@ class _SellerInformationState extends State<SellerInformation> {
                   margin: const EdgeInsets.only(left: 10, top: 10),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Colors.cyan,
+                    image: DecorationImage(
+                      image: NetworkImage('${baseUrl}assets/static/pdp/${widget.productShowing.profilPicture}'),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
                 Container(

@@ -20,7 +20,18 @@ async function getCategoy(){
     }
 }
 
+async function getCategoryByName(name){
+    try{
+        return await Category.findOne({
+            where: { category_name: name }
+        });
+    } catch(error){
+        console.error('Error while getting category:', error);
+    }
+}
+
 module.exports = {
     createCategory,
     getCategoy,
+    getCategoryByName
 };
