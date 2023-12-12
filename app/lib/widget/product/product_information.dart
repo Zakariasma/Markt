@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../../domain/productDTO.dart';
+
 class ProductInformation extends StatefulWidget {
-  const ProductInformation({super.key});
+
+  final ProductDTO productShowing;
+
+  const ProductInformation({super.key, required this.productShowing});
 
   @override
   State<ProductInformation> createState() => _ProductInformationState();
@@ -38,9 +43,9 @@ class _ProductInformationState extends State<ProductInformation> {
       ),
       child: Column(
         children: [
-          informationContainer("Macbook Air 2022", 25, FontWeight.bold),
-          informationContainer("855 €",25, FontWeight.bold),
-          informationContainer("Aujourd'hui à 16:19", 15, FontWeight.w500),
+          informationContainer(widget.productShowing.title, 25, FontWeight.bold),
+          informationContainer("${widget.productShowing.prix} €",25, FontWeight.bold),
+          informationContainer(widget.productShowing.date, 15, FontWeight.w500),
           Container(
             width: double.infinity,
             height: 50,

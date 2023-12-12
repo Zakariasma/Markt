@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../../domain/productDTO.dart';
+
 class SameProduct extends StatefulWidget {
-  const SameProduct({super.key});
+
+  final ProductDTO productShowing;
+
+  const SameProduct({super.key, required this.productShowing});
 
   @override
   State<SameProduct> createState() => _SameProductState();

@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../../domain/productDTO.dart';
+
 class ProductDescription extends StatefulWidget {
-  const ProductDescription({super.key});
+
+  final ProductDTO productShowing;
+
+  const ProductDescription({super.key, required this.productShowing});
 
   @override
   State<ProductDescription> createState() => _ProductDescriptionState();
@@ -35,9 +40,9 @@ class _ProductDescriptionState extends State<ProductDescription> {
           Container(
             width: double.infinity,
             margin: const EdgeInsets.only(top: 10),
-            child: const Text(
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget ultricies ultrices, nunc nisl aliquam nunc, vitae aliquam nisl nunc eget nisl. Donec euismod, nisl eget ultricies ultrices, nunc nisl aliquam nunc, vitae aliquam nisl nunc eget nisl. Donec euismod, nisl eget ultricies ultrices, nunc nisl aliquam nunc, vitae aliquam nisl nunc eget nisl. Donec euismod, nisl eget ultricies ultrices, nunc nisl aliquam nunc, vitae aliquam nisl nunc eget nisl. Donec euismod, nisl eget ultricies ultrices, nunc nisl aliquam nunc, vitae aliquam nisl nunc eget nisl. Donec euismod, nisl eget ultricies ultrices, nunc nisl aliquam nunc, vitae aliquam nisl nunc eget nisl. Donec euismod, nisl eget ultricies ultrices, nunc nisl aliquam nunc, vitae aliquam nisl nunc eget nisl",
-              style: TextStyle(
+            child: Text(
+              widget.productShowing.description,
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 18,
                 fontWeight: FontWeight.w500,

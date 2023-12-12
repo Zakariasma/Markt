@@ -1,7 +1,15 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:markt/env.dart';
 
 class PictureCard extends StatefulWidget {
-  const PictureCard({super.key});
+
+  final String picture;
+  final double margeRight;
+  final double size;
+
+  const PictureCard({super.key, required this.picture, required this.margeRight, required this.size});
 
   @override
   State<PictureCard> createState() => _PictureCardState();
@@ -10,14 +18,17 @@ class PictureCard extends StatefulWidget {
 class _PictureCardState extends State<PictureCard> {
   @override
   Widget build(BuildContext context) {
-    var widthScreen = MediaQuery.of(context).size.width * 0.9;
+    var widthScreen = MediaQuery.of(context).size.width * widget.size;
     return Container(
       width: widthScreen,
       height: 100,
-      margin: EdgeInsets.only(right: 10),
+      margin: EdgeInsets.only(right: widget.margeRight),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: Colors.cyan,
+        image: DecorationImage(
+            image: NetworkImage('${baseUrl}assets/static/product_img/${widget.picture}'),
+          fit: BoxFit.cover
+        )
       ),
     );
   }

@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../../domain/productDTO.dart';
+
 class SellerInformation extends StatefulWidget {
-  const SellerInformation({super.key});
+
+  final ProductDTO productShowing;
+
+  const SellerInformation({super.key, required this.productShowing});
 
   @override
   State<SellerInformation> createState() => _SellerInformationState();
@@ -47,9 +52,9 @@ class _SellerInformationState extends State<SellerInformation> {
                 Container(
                   margin: const EdgeInsets.only(left: 10),
                   alignment: Alignment.centerLeft,
-                  child: const Text(
-                    "Charle",
-                    style: TextStyle(
+                  child: Text(
+                    widget.productShowing.username,
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 25,
                       fontWeight: FontWeight.bold,

@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../../domain/productDTO.dart';
+
 class Maps extends StatefulWidget {
-  const Maps({super.key});
+
+  final ProductDTO productShowing;
+
+  const Maps({super.key, required this.productShowing});
 
   @override
   State<Maps> createState() => _MapsState();
