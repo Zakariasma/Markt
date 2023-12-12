@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../data/product_repository.dart';
+import '../domain/productDTO.dart';
 import '../widget/home_widgets/bottom_navbar.dart';
 import '../widget/home_widgets/home_bar.dart';
 import '../widget/profil/profil_card.dart';
 import '../widget/profil/profil_product.dart';
-import '../widget/universal_widgets/return_navbar.dart';
+import 'package:markt/token/token_manage.dart';
 
 class Profil extends StatefulWidget {
   const Profil({super.key});
@@ -14,6 +16,27 @@ class Profil extends StatefulWidget {
 }
 
 class _ProfilState extends State<Profil> {
+  final ProductRepository productRepository = ProductRepository();
+  List<ProductDTO> products = [];
+
+  @override
+  void initState() {
+    super.initState();
+    setupInitialData();
+  }
+
+  Future<void> setupInitialData() async {
+    Map<String, dynamic>? token = await TokenManager.extractTokenData();
+    int? userId = token?['id'];
+    if (userId != null) {
+      productRepository.getProductsByUserID(userId).then((fetchedProducts) {
+        setState(() {
+          products = fetchedProducts;
+        });
+      });
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +46,7 @@ class _ProfilState extends State<Profil> {
         children: <Widget>[
           HomeBar(),
           ProfilCard(),
-          ProfilProduct(),
+          ProfilProduct(products: products),
         ],
       ),
       bottomNavigationBar: BottomNavbar(),

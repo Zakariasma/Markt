@@ -22,7 +22,7 @@ class _SameProductState extends State<SameProduct> {
   @override
   void initState() {
     super.initState();
-    productRepository.getProductsRecommendation(widget.productShowing.category).then((fetchedProducts) {
+    productRepository.getProductsRecommendation(widget.productShowing.category, widget.productShowing.id).then((fetchedProducts) {
       setState(() {
         products = fetchedProducts;
       });

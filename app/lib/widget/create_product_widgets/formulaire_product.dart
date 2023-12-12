@@ -67,17 +67,32 @@ class _FormulaireProduct extends State<FormulaireProduct> {
           CustomImagePicker(images: _images),
           CustomTextFormField("Titre", "Veuillez entrez le titre...", _titleController, 1),
           CustomTextFormField("Prix", "Veuillez entrez le titre...", _priceController, 1),
+          GetLocalisation(localisation: _localisation),
           CustomCategoryMenu(selectedCategory: _selectedCategory),
           CustomTextFormField("Description", "Veuillez entrez une description...", _descriptionController, 5),
-          CustomButton(_formKey, _titleController),
-          GetLocalisation(localisation: _localisation),
-          ElevatedButton(
-            onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                sendFormData();
-              }
-            },
-            child: Text('Submit'),
+          Container(
+            width: double.infinity,
+            height: 50,
+            margin: const EdgeInsets.only(top: 20, bottom: 30, right: 10, left: 10),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFFE2E2E2),
+                textStyle: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  decorationColor: Colors.red,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  sendFormData();
+                }
+              },
+              child: Text('Crée le produit'),
+            ),
           ),
         ],
         ),

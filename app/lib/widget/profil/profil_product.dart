@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:markt/widget/profil/switch_button.dart';
 
+import '../../domain/productDTO.dart';
+import '../home_widgets/product_card.dart';
+
 class ProfilProduct extends StatefulWidget {
-  const ProfilProduct({super.key});
+
+  final List<ProductDTO> products;
+
+  const ProfilProduct({super.key, required this.products});
 
   @override
   State<ProfilProduct> createState() => _ProfilProductState();
@@ -20,17 +26,11 @@ class _ProfilProductState extends State<ProfilProduct> {
           SwitchButton(),
           Container(
             margin: EdgeInsets.only(top: 20, bottom: 20),
+            width: double.infinity,
             child: Wrap(
               children: [
-                Container(
-                  width: 150,
-                  height: 150,
-                  margin: EdgeInsets.only(left:5, right:5),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.deepOrange,
-                  ),
-                ),
+                for (ProductDTO product in widget.products)
+                  ProductCard(product: product),
               ],
             ),
           ),

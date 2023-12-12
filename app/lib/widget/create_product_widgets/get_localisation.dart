@@ -35,9 +35,19 @@ class _GetLocalisationState extends State<GetLocalisation> {
     return Container(
       width: double.infinity,
       height: 50,
-      color: Colors.blue,
       margin: const EdgeInsets.only(top: 20, left: 10, right: 10),
       child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xFFE2E2E2),
+          textStyle: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            decorationColor: Colors.red,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
         onPressed: () async {
           PermissionStatus status = await Permission.location.request();
           if (status.isDenied) {

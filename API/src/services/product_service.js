@@ -64,17 +64,21 @@ async function getProductByUserID(userId){
 }
 
 
-async function getFourProductByCategoryName(categoryName){
+async function getFourProductByCategoryNameExceptActualProduct(categoryName, actualID){
     try{
+        const category = await Category.findOne({
+            where: { name: categoryName }
+        });
         return await Product.findAll({
-            limit: 4,
+            where: { categoryId: category.id, id: { [Sequelize.Op.not]: actualID } },
             order: [
                 ['date', 'DESC']
             ],
             include: [
                 { model: User, as: 'User' },
-                { model: Category, as: 'Category', where: { name: categoryName } }
-            ]
+                { model: Category, as: 'Category' }
+            ],
+            limit: 4
         });
     } catch(error){
         console.error('Error while getting product:', error);
@@ -88,5 +92,5 @@ module.exports = {
     getProduct,
     getProductByCategoryID,
     getProductByUserID,
-    getFourProductByCategoryName,
+    getFourProductByCategoryNameExceptActualProduct,
 };

@@ -55,10 +55,10 @@ router.get('/user/:userId', async (req, res) => {
     }
 });
 
-router.get('/recommendation/:categoryName', async (req, res) => {
+router.get('/recommendation/:categoryName/actualID', async (req, res) => {
     try {
         const category = await CategoryService.getCategoryByName(req.params.categoryName);
-        const products = await ProductService.getProductByCategoryID(category.id);
+        const products = await ProductService.getFourProductByCategoryNameExceptActualProduct(category.id, req.params.actualID);
         const productsDTO = await ProductMapper.mappProducts(products);
         return res.json(productsDTO);
     } catch (err) {

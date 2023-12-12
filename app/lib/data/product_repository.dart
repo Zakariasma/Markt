@@ -35,9 +35,18 @@ class ProductRepository {
     }
   }
 
-  Future<List<ProductDTO>> getProductsRecommendation(category) async {
+  Future<List<ProductDTO>> getProductsRecommendation(category,actualID) async {
     try {
-      return await productProvider.getProductsRecommendation(category);
+      return await productProvider.getProductsRecommendation(category, actualID);
+    } catch (e) {
+      print('Failed to load products: $e');
+      return [];
+    }
+  }
+
+  Future<List<ProductDTO>> getProductsByUserID(int userId) async {
+    try {
+      return await productProvider.getProductByUserID(userId);
     } catch (e) {
       print('Failed to load products: $e');
       return [];
