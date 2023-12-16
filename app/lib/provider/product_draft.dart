@@ -2,12 +2,23 @@ import 'package:sqflite/sqflite.dart';
 import 'dart:io';
 import '../domain/product.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart';
+
 
 class ProductDraftProvider{
 
-  Future<Database> database;
+  Future<Database> database = getDatabasesPath().then((String path) {
+    return openDatabase(
+      join(path, 'products.db'),
+      onCreate: (db, version) {
+        return db.execute(
+          "CREATE TABLE products(id INTEGER PRIMARY KEY, pictureList TEXT, title TEXT, prix TEXT, categoryId INTEGER, description TEXT, city TEXT, postCode TEXT, userId INTEGER)",
+        );
+      },
+      version: 1,
+    );
+  });
 
-  ProductDraftProvider(this.database);
 
   Future<void> insertProduct(Product product, List<File> images) async {
     final db = await database;

@@ -7,7 +7,7 @@ class RouteGuard extends RouteObserver<PageRoute<dynamic>> {
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) async {
     super.didPush(route, previousRoute);
 
-    final List<String> routesRequiringToken = ['/createProduct', '/lobby', '/profil'];
+    final List<String> routesRequiringToken = ['/lobby', '/profil'];
 
     if (routesRequiringToken.contains(route.settings.name)) {
 

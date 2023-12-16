@@ -3,9 +3,9 @@ import 'package:markt/provider/product_draft.dart';
 import 'package:markt/domain/product.dart';
 
 class ProductDraftRepository {
-  final ProductDraftProvider productDraftProvider;
 
-  ProductDraftRepository({required this.productDraftProvider});
+  final productDraftProvider = ProductDraftProvider();
+
 
   Future<void> createProductDraft(Product productDraft, List<File> images) async {
     try {

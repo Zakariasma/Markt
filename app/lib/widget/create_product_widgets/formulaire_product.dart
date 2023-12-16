@@ -11,9 +11,12 @@ import 'package:markt/domain/product.dart';
 import 'package:markt/domain/localisation.dart';
 import 'dart:io';
 import 'package:markt/token/token_manage.dart';
+import 'package:markt/data/product_draft_repository.dart';
 
 class FormulaireProduct extends StatefulWidget {
-  const FormulaireProduct({super.key});
+
+
+  const FormulaireProduct({Key? key});
 
   @override
   State<FormulaireProduct> createState() => _FormulaireProduct();
@@ -23,6 +26,7 @@ class _FormulaireProduct extends State<FormulaireProduct> {
 
   final _formKey = GlobalKey<FormState>();
   final productRepository = ProductRepository();
+  final productDraftRepository = ProductDraftRepository();
 
   final _titleController = TextEditingController();
   final _priceController = TextEditingController();
@@ -31,6 +35,18 @@ class _FormulaireProduct extends State<FormulaireProduct> {
   final List<XFile> _images = [];
   final ValueNotifier<int> _selectedCategory = ValueNotifier<int>(0);
 
+  VoidCallback? onYesButtonPressed;
+
+  @override
+  void initState() {
+    super.initState();
+    onYesButtonPressed = saveDraft();
+  }
+
+  saveDraft() {
+    print("save");
+  }
+
   void dispose() {
     _titleController.dispose();
     super.dispose();
@@ -38,7 +54,7 @@ class _FormulaireProduct extends State<FormulaireProduct> {
 
   void sendFormData() async {
     if (_formKey.currentState!.validate()) {
-      Map<String, dynamic>  tokenData = await TokenManager.extractTokenData() as Map<String, dynamic>;
+      //Map<String, dynamic>  tokenData = await TokenManager.extractTokenData() as Map<String, dynamic>;
       var product = Product(
         id: 0,
         pictureList: _images.map((image) => image.path).toList(),
@@ -48,7 +64,7 @@ class _FormulaireProduct extends State<FormulaireProduct> {
         description: _descriptionController.text,
         city: _localisation[0],
         postCode: _localisation[1],
-        userId: tokenData['id'],
+        userId: 1,
       );
 
       var imageFiles = _images.map((xfile) => File(xfile.path)).toList();
@@ -57,6 +73,27 @@ class _FormulaireProduct extends State<FormulaireProduct> {
     }
   }
 
+  void saveDraftBD() async {
+      //Map<String, dynamic>  tokenData = await TokenManager.extractTokenData() as Map<String, dynamic>;
+      var product = Product(
+        id: 2,
+        pictureList: _images.map((image) => image.path).toList(),
+        title: _titleController.text,
+        prix: _priceController.text,
+        categoryId: _selectedCategory.value,
+        description: _descriptionController.text,
+        city: _localisation[0],
+        postCode: _localisation[1],
+        userId: 0,
+      );
+      var imageFiles = _images.map((xfile) => File(xfile.path)).toList();
+      await productDraftRepository.createProductDraft(product, imageFiles);
+  }
+
+  void printdb() async {
+    var product = await productDraftRepository.getProductDraftsByUserID(0);
+    print(product.length);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,6 +132,56 @@ class _FormulaireProduct extends State<FormulaireProduct> {
               child: Text('Crée le produit'),
             ),
           ),
+          Container(
+            width: double.infinity,
+            height: 50,
+            margin: const EdgeInsets.only(top: 20, bottom: 30, right: 10, left: 10),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFFE2E2E2),
+                textStyle: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  decorationColor: Colors.red,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  saveDraftBD();
+                }
+              },
+              child: Text('Crée le DRAF'),
+            ),
+          ),
+
+          Container(
+            width: double.infinity,
+            height: 50,
+            margin: const EdgeInsets.only(top: 20, bottom: 30, right: 10, left: 10),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFFE2E2E2),
+                textStyle: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  decorationColor: Colors.red,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  printdb();
+                }
+              },
+              child: Text('print'),
+            ),
+          ),
+
         ],
         ),
     );

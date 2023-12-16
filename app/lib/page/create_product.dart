@@ -11,68 +11,6 @@ class CreateProduct extends StatefulWidget{
 
 class _CreateProduct extends State<CreateProduct> {
 
-  void saveDraft(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          content: Container(
-            width: double.infinity,
-            height: 150,
-            child: Column(
-              children: [
-                Container(
-                  width: double.infinity,
-                  margin: const EdgeInsets.only(top: 20),
-                  child: const Text(
-                      "Voulez-vous sauvegarder votre brouillon ?",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                      ),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(top: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ElevatedButton(
-                        style: ButtonStyle(
-                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                          ),
-                        ),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Text("Non"),
-                      ),
-                      ElevatedButton(
-                        style: ButtonStyle(
-                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                          ),
-                        ),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Text("Oui"),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            )
-          ),
-        );
-      },
-    );
-  }
 
 
 
@@ -82,7 +20,7 @@ class _CreateProduct extends State<CreateProduct> {
       backgroundColor: const Color(0xFF222222),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(50),
-        child: DraftCallback(passAtCreatePage: () => saveDraft(context)),
+        child: ReturnNavbar("VENDRE UN PRODUIT", "product"),
       ),
       body: ListView(
         children: <Widget>[

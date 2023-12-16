@@ -6,6 +6,7 @@ import 'package:markt/env.dart';
 import 'package:markt/domain/productDTO.dart';
 
 class ProductProvider {
+
   Future<void> createProduct(Product product, List<File> images) async {
     print("provider");
     var uri = Uri.parse('${baseUrl}api/product');
