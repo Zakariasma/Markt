@@ -2,6 +2,8 @@ import 'dart:io';
 import 'package:markt/provider/product_draft.dart';
 import 'package:markt/domain/product.dart';
 
+import '../domain/productDTO.dart';
+
 class ProductDraftRepository {
 
   final productDraftProvider = ProductDraftProvider();
@@ -16,7 +18,7 @@ class ProductDraftRepository {
     }
   }
 
-  Future<List<Product>> getProductDraftsByUserID(int userId) async {
+  Future<List<ProductDTO>> getProductDraftsByUserID(int userId) async {
     try {
       return await productDraftProvider.getProductsByUserId(userId);
     } catch (e) {

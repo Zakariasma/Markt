@@ -4,6 +4,8 @@ import '../domain/product.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
 
+import '../domain/productDTO.dart';
+
 
 class ProductDraftProvider{
 
@@ -100,7 +102,7 @@ class ProductDraftProvider{
     );
   }
 
-  Future<List<Product>> getProductsByUserId(int userId) async {
+  Future<List<ProductDTO>> getProductsByUserId(int userId) async {
     final db = await database;
 
     final List<Map<String, dynamic>> maps = await db.query(
@@ -109,8 +111,8 @@ class ProductDraftProvider{
       whereArgs: [userId],
     );
 
-    return List.generate(maps.length, (i) {
-      return Product(
+    List.generate(maps.length, (i) {
+      Product(
         id: maps[i]['id'],
         pictureList: (maps[i]['pictureList'] as String).split(', '),
         title: maps[i]['title'],
@@ -122,6 +124,39 @@ class ProductDraftProvider{
         userId: maps[i]['userId'],
       );
     });
+
+    List<ProductDTO> products = [];
+    for (var item in maps) {
+      products.add(mapProductToProductDTO(Product(
+        id: item['id'],
+        pictureList: (item['pictureList'] as String).split(', '),
+        title: item['title'],
+        prix: item['prix'],
+        categoryId: item['categoryId'],
+        description: item['description'],
+        city: item['city'],
+        postCode: item['postCode'],
+        userId: item['userId'],
+      )));
+    }
+    return products;
+  }
+
+
+  mapProductToProductDTO(Product product){
+    return ProductDTO(
+      id: product.id,
+      pictureList: product.pictureList,
+      title: product.title,
+      prix: int.parse(product.prix),
+      category: product.categoryId.toString(),
+      description: product.description,
+      city: product.city,
+      postCode: product.postCode,
+      username: product.userId.toString(),
+      date: '',
+      profilPicture: '',
+    );
   }
 
 

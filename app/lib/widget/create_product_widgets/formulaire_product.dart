@@ -76,7 +76,7 @@ class _FormulaireProduct extends State<FormulaireProduct> {
   void saveDraftBD() async {
       //Map<String, dynamic>  tokenData = await TokenManager.extractTokenData() as Map<String, dynamic>;
       var product = Product(
-        id: 2,
+        id: 11, // Doit modifier sinon update
         pictureList: _images.map((image) => image.path).toList(),
         title: _titleController.text,
         prix: _priceController.text,
@@ -84,14 +84,14 @@ class _FormulaireProduct extends State<FormulaireProduct> {
         description: _descriptionController.text,
         city: _localisation[0],
         postCode: _localisation[1],
-        userId: 0,
+        userId: 1, // doit utiliser idtoken
       );
       var imageFiles = _images.map((xfile) => File(xfile.path)).toList();
       await productDraftRepository.createProductDraft(product, imageFiles);
   }
 
   void printdb() async {
-    var product = await productDraftRepository.getProductDraftsByUserID(0);
+    var product = await productDraftRepository.getProductDraftsByUserID(1);
     print(product.length);
   }
 

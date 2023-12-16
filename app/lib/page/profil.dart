@@ -7,6 +7,7 @@ import '../widget/home_widgets/home_bar.dart';
 import '../widget/profil/profil_card.dart';
 import '../widget/profil/profil_product.dart';
 import 'package:markt/token/token_manage.dart';
+import 'package:markt/data/product_draft_repository.dart';
 
 class Profil extends StatefulWidget {
   const Profil({super.key});
@@ -16,13 +17,16 @@ class Profil extends StatefulWidget {
 }
 
 class _ProfilState extends State<Profil> {
+
   final ProductRepository productRepository = ProductRepository();
+  final ProductDraftRepository productDraftRepository = ProductDraftRepository();
   List<ProductDTO> products = [];
 
   @override
   void initState() {
     super.initState();
-    setupInitialData();
+    //setupInitialData();
+    setUpDraftProduct();
   }
 
   Future<void> setupInitialData() async {
@@ -37,6 +41,24 @@ class _ProfilState extends State<Profil> {
     }
   }
 
+  Future<void> setUpDraftProduct() async {
+    /*Map<String, dynamic>? token = await TokenManager.extractTokenData();
+    /int? userId = token?['id'];
+    if (userId != null) {
+      productRepository.getProductsByUserID(userId).then((fetchedProducts) {
+        setState(() {
+          products = fetchedProducts;
+        });
+      });
+    }*/
+    productDraftRepository.getProductDraftsByUserID(1).then((fetchedProducts) {
+      setState(() {
+        products = fetchedProducts;
+        print(products);
+      });
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +67,7 @@ class _ProfilState extends State<Profil> {
       body: ListView(
         children: <Widget>[
           HomeBar(),
-          ProfilCard(),
+          const ProfilCard(),
           ProfilProduct(products: products),
         ],
       ),
