@@ -21,4 +21,17 @@ class Product {
     required this.userId,
   });
 
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'pictureList': pictureList.join(', '),
+      'title': title,
+      'prix': prix,
+      'categoryId': categoryId,
+      'description': description,
+      'city': city,
+      'postCode': postCode,
+      'userId': userId,
+    };
+  }
 }
