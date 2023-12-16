@@ -89,6 +89,7 @@ class _FormulaireProduct extends State<FormulaireProduct> {
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   sendFormData();
+                  Navigator.pop(context, '/');
                 }
               },
               child: Text('Crée le produit'),
