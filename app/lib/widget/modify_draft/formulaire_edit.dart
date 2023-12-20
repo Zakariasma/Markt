@@ -14,6 +14,8 @@ import 'dart:io';
 import 'package:markt/token/token_manage.dart';
 import 'package:markt/data/product_draft_repository.dart';
 
+import '../universal_widgets/submit_button.dart';
+
 
 class FormulaireEdit extends StatefulWidget {
 
@@ -50,9 +52,6 @@ class _FormulaireEditState extends State<FormulaireEdit> {
     _localisation.add(widget.productDTO.city);
     _localisation.add(widget.productDTO.postCode);
   }
-  saveDraft() {
-    print("save");
-  }
 
   void dispose() {
     _titleController.dispose();
@@ -77,6 +76,28 @@ class _FormulaireEditState extends State<FormulaireEdit> {
     await productDraftRepository.updateProductDraft(product, imageFiles);
   }
 
+  void sendFormData() async {
+    Map<String, dynamic>? token = await TokenManager.extractTokenData();
+    int? userId = token?['id'];
+    if (_formKey.currentState!.validate()) {
+      var product = Product(
+        id: 0,
+        pictureList: _images.map((image) => image.path).toList(),
+        title: _titleController.text,
+        prix: _priceController.text,
+        categoryId: _selectedCategory.value,
+        description: _descriptionController.text,
+        city: _localisation[0],
+        postCode: _localisation[1],
+        userId: userId!,
+      );
+
+      var imageFiles = _images.map((xfile) => File(xfile.path)).toList();
+      await productRepository.createProduct(product, imageFiles);
+      await productDraftRepository.deleteProductDraft(widget.productDTO.id);
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -90,31 +111,23 @@ class _FormulaireEditState extends State<FormulaireEdit> {
           GetLocalisation(localisation: _localisation),
           CustomCategoryMenu(selectedCategory: _selectedCategory),
           CustomTextFormField("Description", "Veuillez entrez une description...", _descriptionController, 5),
-
-          Container(
-            width: double.infinity,
-            height: 50,
-            margin: const EdgeInsets.only(top: 20, bottom: 30, right: 10, left: 10),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFE2E2E2),
-                textStyle: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  decorationColor: Colors.red,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  saveDraftBD();
-                }
-              },
-              child: Text('Modifier le produit'),
-            ),
+          SubmitButton(
+            onSubmit: () {
+              if (_formKey.currentState!.validate()) {
+                saveDraftBD();
+                Navigator.pop(context, '/');
+              }
+            }, buttonText: 'Modifier le brouillon',
           ),
+          SubmitButton(
+            onSubmit: () {
+              if (_formKey.currentState!.validate()) {
+                sendFormData();
+                Navigator.pop(context, '/');
+              }
+            }, buttonText: 'Publier',
+          ),
+
         ],
       ),
     );

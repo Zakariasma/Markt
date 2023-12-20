@@ -13,6 +13,8 @@ import 'dart:io';
 import 'package:markt/token/token_manage.dart';
 import 'package:markt/data/product_draft_repository.dart';
 
+import '../universal_widgets/submit_button.dart';
+
 class FormulaireProduct extends StatefulWidget {
 
 
@@ -109,81 +111,23 @@ class _FormulaireProduct extends State<FormulaireProduct> {
           GetLocalisation(localisation: _localisation),
           CustomCategoryMenu(selectedCategory: _selectedCategory),
           CustomTextFormField("Description", "Veuillez entrez une description...", _descriptionController, 5),
-          Container(
-            width: double.infinity,
-            height: 50,
-            margin: const EdgeInsets.only(top: 20, bottom: 30, right: 10, left: 10),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFE2E2E2),
-                textStyle: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  decorationColor: Colors.red,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  sendFormData();
-                  Navigator.pop(context, '/');
-                }
-              },
-              child: Text('Crée le produit'),
-            ),
-          ),
-          Container(
-            width: double.infinity,
-            height: 50,
-            margin: const EdgeInsets.only(top: 20, bottom: 30, right: 10, left: 10),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFE2E2E2),
-                textStyle: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  decorationColor: Colors.red,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  saveDraftBD();
-                }
-              },
-              child: Text('Crée le DRAF'),
-            ),
+          SubmitButton(
+            onSubmit: () {
+              if (_formKey.currentState!.validate()) {
+                sendFormData();
+                Navigator.pop(context, '/');
+              }
+            }, buttonText: 'Publier',
           ),
 
-          Container(
-            width: double.infinity,
-            height: 50,
-            margin: const EdgeInsets.only(top: 20, bottom: 30, right: 10, left: 10),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFE2E2E2),
-                textStyle: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  decorationColor: Colors.red,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  printdb();
-                }
-              },
-              child: Text('print'),
-            ),
+          SubmitButton(
+            onSubmit: () {
+              if (_formKey.currentState!.validate()) {
+                saveDraftBD();
+                Navigator.pop(context, '/');
+              }
+            }, buttonText: 'Sauvegarder le brouillon',
           ),
-
         ],
         ),
     );
