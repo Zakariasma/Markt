@@ -87,16 +87,45 @@ class ProductDraftProvider{
     });
   }
 
-  Future<void> updateProduct(Product product) async {
+  Future<void> updateProduct(Product product, List<File> images) async {
     final db = await database;
+
+    // Créer un dossier pour stocker les images
+    final directory = await getApplicationDocumentsDirectory();
+    final imageDirectory = Directory('${directory.path}/images');
+    if (!imageDirectory.existsSync()) {
+      imageDirectory.createSync();
+    }
+
+    // Enregistrer les images et obtenir les chemins d'accès
+    List<String> imagePaths = [];
+    for (var image in images) {
+      final imageName = '${DateTime.now().millisecondsSinceEpoch}.png';
+      final newImage = await image.copy('${imageDirectory.path}/$imageName');
+      imagePaths.add(newImage.path);
+    }
+
+    // Mettre à jour le produit avec les nouveaux chemins d'accès des images
+    Product updatedProduct = Product(
+      id: product.id,
+      pictureList: imagePaths,
+      title: product.title,
+      prix: product.prix,
+      categoryId: product.categoryId,
+      description: product.description,
+      city: product.city,
+      postCode: product.postCode,
+      userId: product.userId,
+    );
 
     await db.update(
       'products',
-      product.toMap(),
+      updatedProduct.toMap(),
       where: "id = ?",
       whereArgs: [product.id],
     );
   }
+
 
   Future<void> deleteProduct(int id) async {
     final db = await database;

@@ -36,4 +36,13 @@ class ProductDraftRepository {
     }
   }
 
+  Future<void> updateProductDraft(Product productDraft, List<File> images) async {
+    try {
+      await productDraftProvider.updateProduct(productDraft, images);
+      print('Product updated successfully');
+    } catch (e) {
+      print('Failed to update product: $e');
+    }
+  }
+
 }

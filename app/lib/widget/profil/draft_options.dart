@@ -38,8 +38,7 @@ class _DraftOptionState extends State<DraftOption> {
               color: Colors.white,
             ),
             onPressed: () {
-
-            },
+              Navigator.pushNamed(context, '/editdraft', arguments: widget.product);            },
           ),
         ],
       ),
