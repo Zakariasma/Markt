@@ -53,8 +53,9 @@ class _FormulaireProduct extends State<FormulaireProduct> {
   }
 
   void sendFormData() async {
+    Map<String, dynamic>? token = await TokenManager.extractTokenData();
+    int? userId = token?['id'];
     if (_formKey.currentState!.validate()) {
-      //Map<String, dynamic>  tokenData = await TokenManager.extractTokenData() as Map<String, dynamic>;
       var product = Product(
         id: 0,
         pictureList: _images.map((image) => image.path).toList(),
@@ -64,7 +65,7 @@ class _FormulaireProduct extends State<FormulaireProduct> {
         description: _descriptionController.text,
         city: _localisation[0],
         postCode: _localisation[1],
-        userId: 1,
+        userId: userId!,
       );
 
       var imageFiles = _images.map((xfile) => File(xfile.path)).toList();
@@ -74,7 +75,8 @@ class _FormulaireProduct extends State<FormulaireProduct> {
   }
 
   void saveDraftBD() async {
-      //Map<String, dynamic>  tokenData = await TokenManager.extractTokenData() as Map<String, dynamic>;
+      Map<String, dynamic>? token = await TokenManager.extractTokenData();
+      int? userId = token?['id'];
       var product = Product(
         id: 11, // Doit modifier sinon update
         pictureList: _images.map((image) => image.path).toList(),
@@ -84,7 +86,7 @@ class _FormulaireProduct extends State<FormulaireProduct> {
         description: _descriptionController.text,
         city: _localisation[0],
         postCode: _localisation[1],
-        userId: 1, // doit utiliser idtoken
+        userId: userId!,
       );
       var imageFiles = _images.map((xfile) => File(xfile.path)).toList();
       await productDraftRepository.createProductDraft(product, imageFiles);

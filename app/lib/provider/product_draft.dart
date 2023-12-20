@@ -3,23 +3,29 @@ import 'dart:io';
 import '../domain/product.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
-
 import '../domain/productDTO.dart';
 
 
 class ProductDraftProvider{
 
-  Future<Database> database = getDatabasesPath().then((String path) {
-    return openDatabase(
-      join(path, 'products.db'),
-      onCreate: (db, version) {
-        return db.execute(
-          "CREATE TABLE products(id INTEGER PRIMARY KEY, pictureList TEXT, title TEXT, prix TEXT, categoryId INTEGER, description TEXT, city TEXT, postCode TEXT, userId INTEGER)",
-        );
-      },
-      version: 1,
-    );
-  });
+  Future<Database> get database async {
+    final path = await getDatabasesPath();
+    final dbPath = join(path, 'products.db');
+
+    if (await databaseExists(dbPath)) {
+      return openDatabase(dbPath);
+    } else {
+      return openDatabase(
+        dbPath,
+        onCreate: (db, version) {
+          return db.execute(
+            "CREATE TABLE products(id INTEGER PRIMARY KEY, pictureList TEXT, title TEXT, prix TEXT, categoryId INTEGER, description TEXT, city TEXT, postCode TEXT, userId INTEGER)",
+          );
+        },
+        version: 1,
+      );
+    }
+  }
 
 
   Future<void> insertProduct(Product product, List<File> images) async {
@@ -42,7 +48,7 @@ class ProductDraftProvider{
 
     // Créer un nouveau produit avec les chemins d'accès des images
     Product newProduct = Product(
-      id: product.id,
+      id: DateTime.now().millisecondsSinceEpoch,
       pictureList: imagePaths,
       title: product.title,
       prix: product.prix,

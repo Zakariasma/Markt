@@ -25,33 +25,13 @@ class _ProfilState extends State<Profil> {
   @override
   void initState() {
     super.initState();
-    //setupInitialData();
     setUpDraftProduct();
   }
 
-  Future<void> setupInitialData() async {
+  Future<void> setUpDraftProduct() async {
     Map<String, dynamic>? token = await TokenManager.extractTokenData();
     int? userId = token?['id'];
-    if (userId != null) {
-      productRepository.getProductsByUserID(userId).then((fetchedProducts) {
-        setState(() {
-          products = fetchedProducts;
-        });
-      });
-    }
-  }
-
-  Future<void> setUpDraftProduct() async {
-    /*Map<String, dynamic>? token = await TokenManager.extractTokenData();
-    /int? userId = token?['id'];
-    if (userId != null) {
-      productRepository.getProductsByUserID(userId).then((fetchedProducts) {
-        setState(() {
-          products = fetchedProducts;
-        });
-      });
-    }*/
-    productDraftRepository.getProductDraftsByUserID(1).then((fetchedProducts) {
+    productDraftRepository.getProductDraftsByUserID(userId!).then((fetchedProducts) {
       setState(() {
         products = fetchedProducts;
         print(products);
