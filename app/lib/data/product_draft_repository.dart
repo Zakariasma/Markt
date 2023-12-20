@@ -27,4 +27,13 @@ class ProductDraftRepository {
     }
   }
 
+  Future<void> deleteProductDraft(int productId) async {
+    try {
+      await productDraftProvider.deleteProduct(productId);
+      print('Product deleted successfully');
+    } catch (e) {
+      print('Failed to delete product: $e');
+    }
+  }
+
 }

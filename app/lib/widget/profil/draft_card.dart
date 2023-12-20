@@ -56,7 +56,7 @@ class _ProductCard extends State<DraftCard> {
                 ProductField(widget.product.title, 20.0, FontWeight.bold ),
                 ProductField("${widget.product.prix.toString()} €", 20, FontWeight.bold),
                 ProductField("${widget.product.postCode} ${widget.product.city}", 15, FontWeight.w400),
-                DraftOption(),
+                DraftOption(product: widget.product),
               ],
             ),
           ),
