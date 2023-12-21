@@ -22,6 +22,7 @@ class UserProvider {
   }
 
   Future<void> login(UserDTO user) async {
+    print(user.toString());
     final response = await http.post(
       Uri.parse('${baseUrl}api/user/login'),
       headers: {
@@ -31,6 +32,7 @@ class UserProvider {
     );
 
     if (response.statusCode == 200) {
+      print(response.body);
       TokenManager.saveAccessToken(json.decode(response.body)['token']);
     } else {
       throw Exception(response.statusCode);

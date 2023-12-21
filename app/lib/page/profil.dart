@@ -23,7 +23,7 @@ class _ProfilState extends State<Profil> {
   List<ProductDTO> products = [];
 
   @override
-  void initState() {
+  void initState(){
     super.initState();
     setUpDraftProduct();
   }
@@ -31,6 +31,9 @@ class _ProfilState extends State<Profil> {
   Future<void> setUpDraftProduct() async {
     Map<String, dynamic>? token = await TokenManager.extractTokenData();
     int? userId = token?['id'];
+    if(userId == null){
+      Navigator.of(context).pushReplacementNamed('/login');
+    }
     productDraftRepository.getProductDraftsByUserID(userId!).then((fetchedProducts) {
       setState(() {
         products = fetchedProducts;

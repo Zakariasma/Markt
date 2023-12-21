@@ -8,6 +8,7 @@ class GeoCodeApi {
 
     if (response.statusCode == 200) {
       var jsonResponse = json.decode(response.body);
+      print(jsonResponse);
       Localisation localisation = Localisation.fromJson(jsonResponse);
       return localisation;
     } else {

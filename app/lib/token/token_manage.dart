@@ -46,4 +46,10 @@ class TokenManager {
   static Future<String?> getAccessToken() async {
     return await storage.read(key: 'accessToken');
   }
+
+  static Future<void> cleanAccessToken() async {
+    await storage.delete(key: 'accessToken');
+  }
+
+
 }

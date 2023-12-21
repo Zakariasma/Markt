@@ -10,6 +10,7 @@ import 'package:markt/page/login.dart';
 import 'package:markt/page/modify_draft.dart';
 import 'package:markt/page/product_page.dart';
 import 'package:markt/page/profil.dart';
+import 'package:markt/token/token_manage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,13 +22,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final RouteGuard routeGuard = RouteGuard();
+
     return MaterialApp(
       title: 'SQUARE',
       theme: ThemeData(
         useMaterial3: true,
         fontFamily: "Roboto",
       ),
-      navigatorObservers: [RouteGuard()],
+      navigatorObservers: [routeGuard],
       initialRoute: '/',
       onGenerateRoute: (RouteSettings settings) {
         switch (settings.name) {
@@ -53,6 +56,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
-

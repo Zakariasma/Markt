@@ -6,7 +6,7 @@ class Localisation {
 
   factory Localisation.fromJson(Map<String, dynamic> json) {
     return Localisation(
-      city: json['address']['city'],
+      city: json['address']['country'],
       postCode: json['address']['postcode'],
     );
   }
